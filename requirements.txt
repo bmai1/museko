@@ -2,3 +2,5 @@ librosa
 tensorflow
 scikit-learn
 numpy
+
+essentia-tensorflow
