@@ -1,0 +1,12 @@
+- Music analysis app using Essentia TensorFlow models to classify songs
+
+Goals:
+- Download songs from streaming services such as YouTube, Spotify, SoundCloud via youtube-dl + other open-source
+- BPM/Key Detection similar to TuneBat
+- Genre Prediction using Python audio libraries and TensorFlow models
+    - train on electronic genres, differentiate dnb, jungle, house
+- Simple UI with Python Framework
+
+Reach:
+- Song Title Detection -> Artist, Album, Date Published
+
