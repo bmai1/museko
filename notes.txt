@@ -1,7 +1,0 @@
-Tempo octave-error: bpm estimate off by constant factor
-- Example: Commix Be True, high-bpm DNB in the range of 160-180 is estimated at half-tempo at ~86
-- https://stackoverflow.com/questions/61621282/how-can-we-improve-tempo-detection-accuracy-in-librosa
-
-Librosa tempo tracking inaccuracy, maybe try Essentia?
-- https://essentia.upf.edu/machine_learning.html#using-pre-trained-tensorflow-models
-- https://pypi.org/project/essentia-tensorflow/
