@@ -6,14 +6,28 @@
     <meta name="description" content="A music analysis app">
     <meta name="author" content="Brian Mai">
     <title>Museko</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Upload new File</h1>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
+    <div id="overlay"></div>
+    <div id="welcomeDiv">
+        <h1>Welcome to Museko!</h1>
+        <p>Museko is an online music analysis tool that classifies song genres using open-source Essentia TensorFlow models. It also provides additional information about songs using the Python library librosa.</p>
+        <button id="startButton">Start analyzing</button>
+    </div>
+    
+
+    <h1>Upload mp3 file</h1>
+    <form id="mp3_upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput">
         <input type="submit" value="Upload">
     </form>
+    
+    <div id="result">
+        <!-- placeholder for matplotlib plot -->
+    </div>
+
+    <script src="{{ url_for('static', filename='display.js') }}"></script>
 </body>
 </html>
 
