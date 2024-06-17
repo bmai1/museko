@@ -1,3 +1,5 @@
+import { initAudioVisualizer } from "./audioVisualizer.js";
+
 // Welcome div fadein and fadeout
 document.addEventListener("DOMContentLoaded", function () {
     const welcomeDiv = document.getElementById('welcomeDiv');
@@ -40,9 +42,12 @@ document.getElementById('mp3_upload').addEventListener('submit', function(event)
             // console.log(filename);
             resultDiv.innerHTML = `
                 <h2>Analyzed File: ${data.filename}</h2>
-                <audio controls src="${data.file_url}"></audio>
+                <div id="motion-container"></div>
+                <div id="audio-container"></div>
                 <img src="${data.image_url}" alt="Genre Classification">
             `;
+            // render visualizer
+            initAudioVisualizer(data.file_url);
         }
     })
     .catch(error => {

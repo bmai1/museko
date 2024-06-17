@@ -42,3 +42,20 @@ body, html {
 #startButton:hover {
     background-color: #5a5ab7;
 }
+
+/* Audio Visualizer */
+#container {
+	display: flex;
+	height: 60vh;
+}
+
+canvas {
+	display: block;
+	width: 50%;
+    height: 50vh;
+}
+
+audio {
+    width: 50%;
+	height: 40px;
+}

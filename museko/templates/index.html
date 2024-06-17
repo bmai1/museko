@@ -22,12 +22,13 @@
         <input type="file" name="file" id="fileInput">
         <input type="submit" value="Upload">
     </form>
-    
+
     <div id="result">
         <!-- placeholder for matplotlib plot -->
     </div>
 
-    <script src="{{ url_for('static', filename='display.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='display.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='audioVisualizer.js') }}"></script>
 </body>
 </html>
 
