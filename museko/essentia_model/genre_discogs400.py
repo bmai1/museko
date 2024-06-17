@@ -55,8 +55,7 @@ def classify(filename):
     # NSInternalInconsistencyException', reason: 'NSWindow drag regions should only be invalidated on the Main Thread!
 
     plt.switch_backend('Agg') 
-
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(6, 6))
     plt.bar(top_genres, top_scores, color='skyblue')
     plt.xlabel('Genres')
     plt.ylabel('Average Prediction Scores')
