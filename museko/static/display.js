@@ -88,18 +88,22 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
-            const resultDiv = document.getElementById('result');
+            const fileTitle = document.getElementById('file-title');
+            const visualizerContainer = document.getElementById('visualizer-container');
+            const matplotlibFig = document.getElementById('matplotlib-fig')
             if (data.error) {
-                resultDiv.innerHTML = `<p style="color: red;">${data.error}</p>`;
+                fileTitle.innerHTML = `<p style="color: red;">${data.error}</p>`;
             } 
             else {
                 // console.log(filename);
-                resultDiv.innerHTML = `
-                    <h2>Analyzed File: ${data.filename}</h2>
+                fileTitle.innerText = `Analyzed File: ${data.filename}`;
+                visualizerContainer.innerHTML = `
                     <div id="motion-container"></div>
                     <div id="audio-container"></div>
-                    <img src="${data.image_url}" alt="Genre Classification">
                 `;
+                matplotlibFig.src = data.image_url;
+
+                    
                 // render visualizer
                 initAudioVisualizer(data.file_url);
             }

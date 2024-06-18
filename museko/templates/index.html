@@ -17,23 +17,38 @@
         <button id="startButton">Start analyzing</button>
     </div>
     
-    <h1>Download mp3 file</h1>
-    <form id="mp3_download" method="post" action="/download">
-        <input type="text" name="url", id="urlInput" placeholder="Enter YouTube url to download as mp3.">
-        <input type="submit" value="Download">
-        <span id="download_status">Download status</span>
-    </form>
+    <div class="grid-container">
+        <div class="download-upload">
+            <h3>Download mp3 file</h3>
+            <form id="mp3_download" method="post" action="/download">
+                <input type="text" name="url", id="urlInput" placeholder="Enter YouTube url to download as mp3." size="50">
+                <input type="submit" value="Download">
+                <br>
+                <span id="download_status"></span>
+            </form>
+        
+            <h3>Upload mp3 file</h3>
+            <form id="mp3_upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" id="fileInput">
+                <input type="submit" value="Upload">
+            </form>
+        </div>
 
-    <h1>Upload mp3 file</h1>
-    <form id="mp3_upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" id="fileInput">
-        <input type="submit" value="Upload">
-    </form>
+        <!-- placeholder for visualizer -->
+        <div class="visualizer">
+            <h3 id="file-title">Analyzed File:</h3>
+            <div id="visualizer-container"></div>
+        </div>
 
-    <div id="result">
-        <!-- placeholder for matplotlib plot -->
+        <!-- placeholder for matplotlib fig.  -->
+        <div class="genre-plot">
+            <img id="matplotlib-fig" alt="Genre Classification Plot">
+        </div>
+
+        <div class="placeholder">
+            <h2>Placeholder Div</h2>
+        </div>
     </div>
-
     <script type="module" src="{{ url_for('static', filename='display.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='audioVisualizer.js') }}"></script>
 </body>

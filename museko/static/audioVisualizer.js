@@ -19,7 +19,7 @@ export function initAudioVisualizer(file_url) {
         mode: 1, // 1/24th (240) octave bands
         showPeaks: false,
         gradient: 'prism',
-        showScaleX: false, // frequency or notes
+        showScaleX: true, // frequency or notes
         showScaleY: true,  // decibels
         maxDecibels: -20,
         // overlay: true,
