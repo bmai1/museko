@@ -27,7 +27,7 @@
                 <span id="download_status"></span>
             </form>
         
-            <h3>Upload mp3 file</h3>
+            <h3>Upload mp3 file for analysis</h3>
             <form id="mp3_upload" method="post" enctype="multipart/form-data">
                 <input type="file" name="file" id="fileInput">
                 <input type="submit" value="Upload">
@@ -42,11 +42,11 @@
 
         <!-- placeholder for matplotlib fig.  -->
         <div class="genre-plot">
-            <img id="matplotlib-fig" alt="Genre Classification Plot">
+            <img id="matplotlib-fig">
         </div>
 
         <div class="placeholder">
-            <h2>Placeholder Div</h2>
+            <h3>Placeholder Div</h3>
         </div>
     </div>
     <script type="module" src="{{ url_for('static', filename='display.js') }}"></script>
