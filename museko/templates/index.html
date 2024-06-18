@@ -16,6 +16,12 @@
         <button id="startButton">Start analyzing</button>
     </div>
     
+    <h1>Download mp3 file</h1>
+    <form id="mp3_download" method="post" action="/download">
+        <input type="text" name="url", id="urlInput" placeholder="Enter YouTube url to download as mp3.">
+        <input type="submit" value="Download">
+        <span id="download_status">Download status</span>
+    </form>
 
     <h1>Upload mp3 file</h1>
     <form id="mp3_upload" method="post" enctype="multipart/form-data">

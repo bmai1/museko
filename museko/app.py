@@ -1,6 +1,8 @@
 import os
 import sys
 import tempfile
+import yt_dlp
+
 from flask import Flask, render_template, request, send_from_directory, send_file, url_for, jsonify
 from werkzeug.utils import secure_filename
 from essentia_model.genre_discogs400 import classify
@@ -14,9 +16,47 @@ app.config['UPLOAD_FOLDER'] = temp_dir.name
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100 MB max file size
 app.config['JSON_AS_ASCII'] = False  # Ensure Flask JSON responses are UTF-8 to display other languages
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/download', methods=['POST'])
+def download_file():
+    url = request.form['url']
+    try:
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+            }],
+            # temp_dir.name for Download failed: Error: expected str, bytes or os.PathLike object, not TemporaryDirectory
+            'outtmpl': os.path.join(temp_dir.name, '%(title)s.%(ext)s'),  # Use temporary directory
+            'quiet': True, 
+        }
+
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            result = ydl.extract_info(url, download=True)
+            filename = ydl.prepare_filename(result)
+            file_path = filename.rsplit('.', 1)[0] + '.mp3'
+      
+        return jsonify({
+            'file_path': file_path,
+            'file_name': os.path.basename(file_path)
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/get-file')
+def get_file():
+    file_path = request.args.get('file_path')
+    file_name = request.args.get('file_name')
+    
+    if not os.path.exists(file_path):
+        return 'File not found', 404
+    
+    return send_file(file_path, as_attachment=True, download_name=file_name)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
