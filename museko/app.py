@@ -61,12 +61,10 @@ def get_file():
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
-        return jsonify({'error': 'No file part'}), 400
+        return jsonify({'error': 'No file selected'}), 400
 
     file = request.files['file']
     filename = file.filename
-    if filename == '':
-        return jsonify({'error': 'No selected file'}), 400
 
     if file and filename.lower().endswith('.mp3'):
 
