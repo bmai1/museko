@@ -1,6 +1,8 @@
-librosa
-tensorflow
-scikit-learn
-numpy
-
 essentia-tensorflow
+flask
+librosa
+matplotlib
+numpy
+tensorflow
+werkzeug
+yt-dlp
