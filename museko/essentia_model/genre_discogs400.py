@@ -47,7 +47,6 @@ def classify(filename):
     top_genres = sorted_genres[:top_n]
     top_scores = sorted_predictions[:top_n]
 
-    
     # Plot the results
 
     # IMPORTANT: switch to Agg to prevent crashing on MacOS, so server doesn't create and destroy GUI windows
@@ -58,8 +57,10 @@ def classify(filename):
     plt.figure(figsize=(6, 6))
     plt.bar(top_genres, top_scores, color='skyblue')
     plt.xlabel('Genres')
-    plt.ylabel('Average Prediction Scores')
-    plt.title(f'Top {top_n} Genres by Average Prediction')
+
+    # Average prediction scores = Confidence Level C, if taking many samples the score approaches C
+    plt.ylabel('Confidence Level')
+    plt.title(f'Top {top_n} Predicted Genres')
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
 
