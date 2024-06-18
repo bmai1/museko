@@ -1,10 +1,37 @@
-Tempo octave-error: bpm estimate off by constant factor
-- Example: Commix Be True, high-bpm DNB in the range of 160-180 is estimated at half-tempo at ~86
-- https://stackoverflow.com/questions/61621282/how-can-we-improve-tempo-detection-accuracy-in-librosa
+Librosa:
+- tempo octave-error: bpm estimate off by a constant factor
+    - Example: Commix Be True, high-bpm DNB in the range of 160-180 is estimated at half-tempo at ~86
+    - https://stackoverflow.com/questions/61621282/how-can-we-improve-tempo-detection-accuracy-in-librosa
 
 Essentia:
+- Open-source music research from MTG (Music Technology Group) in Barcelona
 - https://essentia.upf.edu/machine_learning.html#using-pre-trained-tensorflow-models
 - https://essentia.upf.edu/models.html#essentia-models
 - https://essentia.upf.edu/machine_learning.html
 - https://pypi.org/project/essentia-tensorflow/
-- Genre Discogs400 TF Model: https://replicate.com/mtg/effnet-discogs
+- Genre Discogs400 TF Model Demo: https://replicate.com/mtg/effnet-discogs
+
+Matplotlib:
+-Threading issues: GUI not on main thread usually fails and crashes
+- Error: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+         NSInternalInconsistencyException', reason: 'NSWindow drag regions should only be invalidated on the Main Thread!
+- Solution: matplotlib.pyplot.switch_backend('Agg') so MacOS doesn't create and destroy invisible plot windows
+
+tempfile: 
+- create temporary directories to store files for Flask to serve to client
+- Filename issue where foreign characters like Chinese/Japanese characters
+    - Not a result of JSONify ASCII encoding over UTF-8, but due to python's secure_filename removing spaces + other
+
+yt-dlp:
+- Output path expects path to dir that isn't temporary
+    - Solution: temp_dir.name with os.join instead of temp_dir alone
+- JavaScript/Flask integration to download in browser
+    - fetch to Flask route
+    - create blob/temp url with JS
+
+TensorFlow:
+- https://www.reddit.com/r/cscareerquestions/comments/1dhrdv2/are_ppl_abusing_ai_titles/
+- EffNet CNN by Essentia
+- Train own model on small dataset
+    - try to overfit on niche genres not listed in Discogs 400
+    - Shibuya-kei, J-shoegaze, J-Pop (City pop)
