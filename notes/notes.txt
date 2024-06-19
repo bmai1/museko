@@ -10,6 +10,8 @@ Essentia:
 - https://essentia.upf.edu/machine_learning.html
 - https://pypi.org/project/essentia-tensorflow/
 - Genre Discogs400 TF Model Demo: https://replicate.com/mtg/effnet-discogs
+- More advanced (C++) bpm detector than librosa
+- https://essentia.upf.edu/tutorial_rhythm_beatdetection.html
 
 Matplotlib:
 -Threading issues: GUI not on main thread usually fails and crashes
@@ -35,3 +37,13 @@ TensorFlow:
 - Train own model on small dataset
     - try to overfit on niche genres not listed in Discogs 400
     - Shibuya-kei, J-shoegaze, J-Pop (City pop)
+
+- Steps to train a model for genre classification:
+    1. Extract audio features using librosa, create data csv
+        - Features include: MFCCs, chroma, spectral contrast
+    2. Preprocess data: normalize and label 0 and 1 for target genre
+        - In this case, electronic DnB and jungle 
+    3. Split data in training/test set
+        - Dataset is too small? 
+    4. Regularization to prevent overfit
+    5. Compile, train, evaluate model

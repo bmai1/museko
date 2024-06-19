@@ -3,10 +3,11 @@
 Goals:
 - Download songs from streaming services such as YouTube, Spotify, SoundCloud via youtube-dl + other open-source
 - BPM/Key Detection similar to TuneBat
-- Genre Prediction using Python audio libraries and TensorFlow models
-    - train on electronic genres, differentiate dnb, jungle, house
+- Genre Prediction using Python audio libraries and open-source TensorFlow models
+- Train personal model on small dataset for binary classification of Drum n Bass
 - Simple UI with Python Framework
 
-Reach:
+Reach/Todo:
+- Draggable divs
 - Song Title Detection -> Artist, Album, Date Published
 
