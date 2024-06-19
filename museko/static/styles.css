@@ -1,8 +1,9 @@
 body, html {
     height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background: #f5f5f5;
+    overflow: hidden;
 }
 
 #overlay {
@@ -21,9 +22,10 @@ body, html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
+    width: 69vw;
+    height: 72vh;
     padding: 20px;
-    background: white;
+    background: rgb(255, 255, 255);
     border-radius: 8px;
     text-align: center;
     z-index: 2;
@@ -31,18 +33,34 @@ body, html {
     transition: opacity 0.5s ease-in-out;
 }
 
-#startButton {
-    padding: 10px 20px;
-    background-color: #6f6ee0;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+#museko-text {
+    background: linear-gradient(to right, #7474BF 0%, #348AC7 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-#startButton:hover {
-    background-color: #5a5ab7;
+#museko-yotsuba {
+    width: 22vw;
+    border-radius: 8px;
+}
+ 
+#startButton {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-grad-blue {
+    background-image: linear-gradient(to right, #7474BF 0%, #348AC7  51%, #7474BF  100%);
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    border-radius: 10px;
+}
+.btn-grad-blue:hover {
+    background-position: right center; 
+    color: #e5f8ff;
 }
 
 /* Grid container setup */
@@ -51,19 +69,20 @@ body, html {
     grid-template-areas:
         "download-upload genre-plot"
         "visualizer genre-plot"
-        "visualizer placeholder";
+        "visualizer analysis";
     grid-gap: 20px;
-    padding: 50px 140px;
+    padding: 10vh 10.5vw;
 }
 
-.download-upload, .visualizer, .genre-plot, .placeholder {
+.download-upload, .visualizer, .genre-plot, .analysis {
     display: flex; 
     flex-direction: column;
     align-items: center;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: rgb(197, 197, 197);
+    background-color: rgb(39, 39, 39);
+    color: white;
 }
 
 .download-upload {
@@ -75,6 +94,8 @@ body, html {
     width: 45vw;
     height: 50vh;
     grid-area: visualizer;
+    background-color: rgb(39, 39, 39);
+    color: white;
 }
 
 #visualizer-container {
@@ -97,11 +118,29 @@ audio {
     grid-area: genre-plot;
 }
 
-#matplotlib-fig {
-    width: 90%;
+#fig-loader {
+    display: none;
+    align-self: center;
+    border: 6px solid #f3f3f3; 
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    animation: spin 0.5s linear infinite;
+}
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.placeholder {
+#matplotlib-fig {
+    width: 90%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.analysis {
     width: 30vw;
-    grid-area: placeholder;
+    grid-area: analysis;
 }

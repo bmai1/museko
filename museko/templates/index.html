@@ -8,13 +8,20 @@
     <title>Museko</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='mu.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
 </head>
 <body>
     <div id="overlay"></div>
     <div id="welcomeDiv">
-        <h1>Welcome to Museko!</h1>
-        <p>Museko is an online music analysis tool that classifies song genres using open-source Essentia TensorFlow models. It also provides additional information about songs using the Python library librosa.</p>
-        <button id="startButton">Start analyzing</button>
+        <h1>Welcome to <span id="museko-text">Museko!</span></h1>
+        <img id="museko-yotsuba" src="{{ url_for('static', filename='museko.png') }}" alt="Museko Yotsuba">
+        <p>
+            Museko is an online music analysis tool that classifies song genres using open-source Essentia TensorFlow models.<br>
+            Includes real-time audio visualization, BPM/key detection, and an mp3 downloader.
+        </p>
+        <button id="startButton" class="btn-grad-blue">Start analyzing</button>
     </div>
     
     <div class="grid-container">
@@ -36,17 +43,23 @@
 
         <!-- placeholder for visualizer -->
         <div class="visualizer">
-            <h3 id="file-title">Analyzed File:</h3>
+            <h3 id="file-title">Audio Visualization</h3>
             <div id="visualizer-container"></div>
         </div>
 
         <!-- placeholder for matplotlib fig.  -->
         <div class="genre-plot">
+            <h3>MTG Genre Classification</h3>
+            <div id="fig-loader"></div>
             <img id="matplotlib-fig">
         </div>
 
-        <div class="placeholder">
-            <h3>Placeholder Div</h3>
+        <!-- placeholder for analysis results -->
+        <div class="analysis">
+            <p>
+                Predicted global BPM: <span id="bpm">N/A</span><br>
+                Predicted key: <span id="key">N/A</span>
+            </p>
         </div>
     </div>
     <script type="module" src="{{ url_for('static', filename='display.js') }}"></script>
