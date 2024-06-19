@@ -88,24 +88,34 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(response => response.json())
         .then(data => {
-            const fileTitle = document.getElementById('file-title');
-            const visualizerContainer = document.getElementById('visualizer-container');
-            const matplotlibFig = document.getElementById('matplotlib-fig')
+            const fileTitle           = document.getElementById('file-title'),
+                  visualizerContainer = document.getElementById('visualizer-container'),
+                  figLoader           = document.getElementById('fig-loader'),
+                  matplotlibFig       = document.getElementById('matplotlib-fig'),
+                  bpm                 = document.getElementById('bpm'),
+                  key                 = document.getElementById('key');
+            //    scale (major/minor) is implied in key
+                
             if (data.error) {
                 fileTitle.innerHTML = `<p style="color: red;">${data.error}</p>`;
             } 
             else {
                 // console.log(filename);
-                fileTitle.innerText = `Analyzed File: ${data.filename}`;
+                fileTitle.innerText = `Audio Visualization: ${data.filename}`;
                 visualizerContainer.innerHTML = `
                     <div id="motion-container"></div>
                     <div id="audio-container"></div>
                 `;
-                matplotlibFig.src = data.image_url;
-
-                    
                 // render visualizer
                 initAudioVisualizer(data.file_url);
+                figLoader.style.display = 'block';
+                matplotlibFig.src = data.image_url;
+                setTimeout(() => {
+                    figLoader.style.display = 'none';
+                    matplotlibFig.style.opacity = 1;
+                }, 2000);
+                bpm.innerText = data.features[0];
+                key.innerText = `${data.features[1]} ${data.features[2]}`;
             }
         })
         .catch(error => {
