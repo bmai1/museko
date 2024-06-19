@@ -1,9 +1,7 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-import io 
-import base64
-
+import io
 
 from essentia.standard import MonoLoader, TensorflowPredictEffnetDiscogs, TensorflowPredict2D
 from .genre_data import genre_names
