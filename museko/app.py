@@ -6,6 +6,7 @@ import yt_dlp
 from flask import Flask, render_template, request, send_from_directory, send_file, url_for, jsonify
 from werkzeug.utils import secure_filename
 from essentia_model.genre_discogs400 import classify
+from essentia_model.extract import extract_features
 
 app = Flask(__name__)
 
@@ -73,15 +74,12 @@ def upload_file():
         original_fn = filename
         filename = secure_filename(filename) 
 
-        # print(original_fn, file=sys.stderr)
-        # print(filename, file=sys.stderr)
-
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
 
         file_url = url_for('uploaded_file', filename=filename)
         image_url = url_for('process_file', filename=filename)
-        return jsonify({'filename': original_fn, 'file_url': file_url, 'image_url': image_url}), 200
+        return jsonify({'filename': original_fn, 'file_url': file_url, 'image_url': image_url, 'features': extract_features(file_path)}), 200
     else:
         return jsonify({'error': 'Invalid file format. Only .mp3 files are allowed.'}), 400
 
