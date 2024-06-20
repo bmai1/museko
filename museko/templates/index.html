@@ -11,12 +11,13 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pacifico'>
 </head>
 <body>
     <div id="overlay"></div>
     <div id="welcomeDiv">
         <h1>Welcome to <span id="museko-text">Museko!</span></h1>
-        <img id="museko-yotsuba" src="{{ url_for('static', filename='museko.png') }}" alt="Museko Yotsuba">
+        <img id="museko-yotsuba" src="{{ url_for('static', filename='yotsuba.png') }}" alt="Museko Yotsuba">
         <p>
             Museko is an online music analysis tool that classifies song genres using open-source Essentia TensorFlow models.<br>
             Includes real-time audio visualization, BPM/key detection, and an mp3 downloader.
@@ -25,43 +26,51 @@
     </div>
     
     <div class="grid-container">
-        <div class="download-upload">
-            <h3>Download mp3 file</h3>
-            <form id="mp3_download" method="post" action="/download">
-                <input type="text" name="url", id="urlInput" placeholder="Enter YouTube url to download as mp3." size="50">
-                <input type="submit" value="Download">
-                <br>
-                <span id="download_status"></span>
-            </form>
-        
-            <h3>Upload mp3 file for analysis</h3>
-            <form id="mp3_upload" method="post" enctype="multipart/form-data">
-                <input type="file" name="file" id="fileInput">
-                <input type="submit" value="Upload">
-            </form>
+        <div class="draggable download-upload">
+            <div id="download-container">
+                <h3>Download mp3 file (yt-dlp)</h3>
+                <p>Supported: YouTube, SoundCloud</p>
+                <form id="mp3-download" method="post" action="/download">
+                    <input type="text" name="url" id="urlInput" placeholder="Enter url" size="19">
+                    <input id="download-button" type="submit" value="Download">
+                    <br>
+                    <span id="download-status"></span>
+                </form>
+            </div>
+            <div id="upload-container">
+                <h3>Upload mp3 for analysis</h3>
+                <form id="mp3-upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" id="file-input" style="display: none;">
+                    <label for="file-input" class="file-label">Browse</label>
+                    <div id="fileName" class="file-name" style="background-color: black;">No file chosen</div><br>
+                    <input id="upload-button" type="submit" value="Upload">
+                    <span id="upload-status"></span>
+                </form>
+            </div>
         </div>
 
         <!-- placeholder for visualizer -->
-        <div class="visualizer">
+        <div class="draggable visualizer">
             <h3 id="file-title">Audio Visualization</h3>
             <div id="visualizer-container"></div>
         </div>
 
         <!-- placeholder for matplotlib fig.  -->
-        <div class="genre-plot">
-            <h3>MTG Genre Classification</h3>
+        <div class="draggable genre-plot">
+            <h3>Genre Classification Graph</h3>
             <div id="fig-loader"></div>
             <img id="matplotlib-fig">
         </div>
 
         <!-- placeholder for analysis results -->
-        <div class="analysis">
+        <div class="draggable analysis">
             <p>
                 Predicted global BPM: <span id="bpm">N/A</span><br>
                 Predicted key: <span id="key">N/A</span>
             </p>
         </div>
     </div>
+    <script src="{{ url_for('static', filename='drag.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='display.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='audioVisualizer.js') }}"></script>
 </body>

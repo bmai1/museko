@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     font-family: 'Inter', sans-serif;
     background: #f5f5f5;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 #overlay {
@@ -70,8 +70,8 @@ body, html {
         "download-upload genre-plot"
         "visualizer genre-plot"
         "visualizer analysis";
-    grid-gap: 20px;
-    padding: 10vh 10.5vw;
+    gap: 20px;
+    padding: 9.5vh 10.5vw;
 }
 
 .download-upload, .visualizer, .genre-plot, .analysis {
@@ -80,14 +80,89 @@ body, html {
     align-items: center;
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     background-color: rgb(39, 39, 39);
     color: white;
+    /* cursor: move; */
 }
 
 .download-upload {
     width: 45vw;
+    height: 22.5vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     grid-area: download-upload;
+    gap: 10px;
+}
+
+#download-container, #upload-container {
+    width: 21vw;
+    height: 20vh;
+    font-size: 0.7rem;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+#download-container {
+    margin-left: 10px;
+    /* width: 20vw; */
+    /* background-color: red; */
+}
+
+#download-button {
+    font-size: 0.7rem;
+    color: #fff;
+    background-color: #8d8d8d;
+    margin: 2px 0;
+    padding: 5px;
+    border: 0;
+    border-radius: 5px;
+}
+
+#upload-container {
+    /* background-color: blue; */
+    border: 1px solid white;
+    transition: background-color 0.3s;
+}
+
+#upload-container.dragover {
+    background-color: rgb(102, 102, 102);
+}
+
+.file-label {
+    display: inline-block;
+    background-color: #007bff;
+    padding: 5px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-name {
+    display: inline-block;
+    max-width: 75%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#upload-button {
+    font-size: 0.7rem;
+    display: none;
+    border: 0;
+    background-color: #8d8d8d;
+    padding: 5px;
+    margin-right: 5px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .visualizer {
@@ -115,6 +190,7 @@ audio {
 
 .genre-plot {
     width: 30vw;
+    height: 63vh;
     grid-area: genre-plot;
 }
 
@@ -135,7 +211,7 @@ audio {
 }
 
 #matplotlib-fig {
-    width: 90%;
+    width: 80%;
     opacity: 0;
     transition: opacity 0.5s ease;
 }

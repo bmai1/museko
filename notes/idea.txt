@@ -6,8 +6,8 @@ Goals:
 - Genre Prediction using Python audio libraries and open-source TensorFlow models
 - Train personal model on small dataset for binary classification of Drum n Bass
 - Simple UI with Python Framework
+- Draggable divs
 
 Reach/Todo:
-- Draggable divs
 - Song Title Detection -> Artist, Album, Date Published
 
