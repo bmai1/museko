@@ -2,7 +2,7 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background: #f5f5f5;
+    background: #f4f3f2;
     /* overflow: hidden; */
 }
 
@@ -22,10 +22,10 @@ body, html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 69vw;
+    width: 74vw;
     height: 72vh;
     padding: 20px;
-    background: rgb(255, 255, 255);
+    background: #f4f3f2;
     border-radius: 8px;
     text-align: center;
     z-index: 2;
@@ -37,11 +37,25 @@ body, html {
     background: linear-gradient(to right, #7474BF 0%, #348AC7 100%);
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    transition: opacity 0.5s;
+}
+
+#museko-text:hover {
+    opacity: 0.9;
 }
 
 #museko-yotsuba {
     width: 22vw;
-    border-radius: 8px;
+    border-radius: 50%;
+    border-top: 6px solid #7474BF;
+    border-bottom: 6px solid rgb(208, 214, 250);
+    animation: spin 20s linear infinite;
+    transition: 1s;
+}
+
+#museko-yotsuba:hover {
+    border-top: 6px solid #b6d7ee;
+    border-bottom: 6px solid #348AC7;
 }
  
 #startButton {
@@ -70,7 +84,7 @@ body, html {
         "download-upload genre-plot"
         "visualizer genre-plot"
         "visualizer analysis";
-    gap: 20px;
+    gap: 1.5vw;
     padding: 9.5vh 10.5vw;
 }
 
@@ -88,7 +102,7 @@ body, html {
 
 .download-upload {
     width: 45vw;
-    height: 22.5vh;
+    height: 23vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-area: download-upload;
@@ -205,7 +219,7 @@ audio {
     animation: spin 0.5s linear infinite;
 }
   
-  @keyframes spin {
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }

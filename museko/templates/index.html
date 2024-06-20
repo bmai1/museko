@@ -17,7 +17,7 @@
     <div id="overlay"></div>
     <div id="welcomeDiv">
         <h1>Welcome to <span id="museko-text">Museko!</span></h1>
-        <img id="museko-yotsuba" src="{{ url_for('static', filename='yotsuba.png') }}" alt="Museko Yotsuba">
+        <a href="https://github.com/bmai1/Museko" target="_blank"><img id="museko-yotsuba" src="{{ url_for('static', filename='yotsuba.png') }}" alt="Museko Yotsuba"></a>
         <p>
             Museko is an online music analysis tool that classifies song genres using open-source Essentia TensorFlow models.<br>
             Includes real-time audio visualization, BPM/key detection, and an mp3 downloader.
@@ -31,7 +31,7 @@
                 <h3>Download mp3 file (yt-dlp)</h3>
                 <p>Supported: YouTube, SoundCloud</p>
                 <form id="mp3-download" method="post" action="/download">
-                    <input type="text" name="url" id="urlInput" placeholder="Enter url" size="19">
+                    <input type="text" name="url" id="urlInput" placeholder="Enter URL here" size="19">
                     <input id="download-button" type="submit" value="Download">
                     <br>
                     <span id="download-status"></span>
