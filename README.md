@@ -5,4 +5,4 @@ Museko is an online music analysis tool.
 - Real-time audio visualizer (JavaScript: audioMotion-analyzer)
 - BPM and additional song details (Python: librosa, essentia)
 
-![Early website UI](demo/demo_1.png)
+![Early website UI](demo/demo_2.png)
