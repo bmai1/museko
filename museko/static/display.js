@@ -2,12 +2,14 @@ import { initAudioVisualizer } from "./audioVisualizer.js";
 
 // Welcome div fadein and fadeout
 document.addEventListener("DOMContentLoaded", function () {
-    const welcomeDiv     = document.getElementById('welcomeDiv'),
-          overlay        = document.getElementById('overlay'),
-          startButton    = document.getElementById('startButton'),
-          downloadForm   = document.getElementById('mp3_download'),
-          downloadStatus = document.getElementById('download_status'),
-          uploadForm     = document.getElementById('mp3_upload');
+    const welcomeDiv        = document.getElementById('welcomeDiv'),
+          overlay           = document.getElementById('overlay'),
+          startButton       = document.getElementById('startButton'),
+          downloadForm      = document.getElementById('mp3-download'),
+          downloadStatus    = document.getElementById('download-status'),
+          uploadForm        = document.getElementById('mp3-upload'),
+          uploadStatus      = document.getElementById('upload-status'),
+          fileInput         = document.getElementById('file-input');
 
     setTimeout(() => {
         welcomeDiv.style.opacity = 1;
@@ -34,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
             downloadStatus.innerText = "Please enter a URL.";
             return;
         }
+
+        downloadStatus.innerText = "Downloading..."
 
         fetch('/download', {
             method: 'POST',
@@ -79,9 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
     
         let formData = new FormData();
-        const fileInput = document.getElementById('fileInput');
         formData.append('file', fileInput.files[0]);
     
+        uploadStatus.innerText = "Uploading...";
+
         fetch('/upload', {
             method: 'POST',
             body: formData
@@ -100,6 +105,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 fileTitle.innerHTML = `<p style="color: red;">${data.error}</p>`;
             } 
             else {
+                uploadStatus.innerText = "Upload successful!";
+
                 // console.log(filename);
                 fileTitle.innerText = `Audio Visualization: ${data.filename}`;
                 visualizerContainer.innerHTML = `
