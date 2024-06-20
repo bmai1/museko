@@ -16,9 +16,9 @@ export function initAudioVisualizer(file_url) {
 
     audioMotion = new AudioMotionAnalyzer(motionContainer, {
         source: audioEl,
-        mode: 1, // 1/24th (240) octave bands
+        // mode: 1, // 1/24th (240) octave bands
         showPeaks: false,
-        gradient: 'prism',
+        gradient: 'steelblue',
         showScaleX: true, // frequency or notes
         showScaleY: true,  // decibels
         maxDecibels: -20,
