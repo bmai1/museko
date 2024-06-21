@@ -47,3 +47,8 @@ TensorFlow:
         - Dataset is too small? 
     4. Regularization to prevent overfit
     5. Compile, train, evaluate model
+
+Flask:
+- flask run & to open in background and write a command to auto-open tab
+    - lsof -i :5000
+    - kill -9 PID
