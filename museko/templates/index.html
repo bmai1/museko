@@ -23,13 +23,14 @@
             Includes real-time audio visualization, BPM/key detection, and an mp3 downloader.
         </p>
         <button id="startButton" class="btn-grad-blue">Start analyzing</button>
+        <footer style="font-size: 0.7rem; margin: 15px 0; color: rgb(122, 122, 122);">Made by Mai.</footer>
     </div>
     
     <div class="grid-container">
         <div class="draggable download-upload">
             <div id="download-container">
                 <h3>Download mp3 file (yt-dlp)</h3>
-                <p>Supported: YouTube, SoundCloud</p>
+                <p>Supported: YouTube, SoundCloud, <a href="https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md" target="_blank" style="color: white;">more</a></p>
                 <form id="mp3-download" method="post" action="/download">
                     <input type="text" name="url" id="urlInput" placeholder="Enter URL here" size="19">
                     <input id="download-button" type="submit" value="Download">
