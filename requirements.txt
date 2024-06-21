@@ -5,4 +5,5 @@ matplotlib
 numpy
 werkzeug
 yt-dlp
+tensorflow
 waitress
