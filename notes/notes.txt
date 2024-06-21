@@ -52,3 +52,9 @@ Flask:
 - flask run & to open in background and write a command to auto-open tab
     - lsof -i :5000
     - kill -9 PID
+
+Render:
+- Every Render web service must bind to a port on host 0.0.0.0 to serve HTTP requests
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))  # Default to port 5000 if PORT not set
+    app.run(host='0.0.0.0', port=port)
