@@ -23,7 +23,7 @@
             Includes real-time audio visualization, BPM/key detection, and an mp3 downloader.
         </p>
         <button id="startButton" class="btn-grad-blue">Start analyzing</button>
-        <footer style="font-size: 0.7rem; margin: 15px 0; color: rgb(122, 122, 122);">Made by Mai.</footer>
+        <!-- <footer style="font-size: 0.7rem; margin: 15px 0; color: rgb(122, 122, 122);">Made by Mai.</footer> -->
     </div>
     
     <div class="grid-container">
@@ -71,6 +71,7 @@
             </p>
         </div>
     </div>
+    <button id="reset-layout" onclick="resetLayout()">Reset Layout</button>
     <script src="{{ url_for('static', filename='drag.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='display.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='audioVisualizer.js') }}"></script>
