@@ -16,14 +16,22 @@ The only way to try out this app would be running it locally.
 
 ## Instructions
 
-1. Clone the repository: ```git clone https://github.com/bmai1/Museko.git```
+1. Clone and and navigate to the repository:
+```
+git clone https://github.com/bmai1/Museko.git
+cd Museko
+```
+2. Install Python dependencies:
+```
+pip3 install -r requirements.txt
+```
+3. Navigate to the inner museko folder and run:
+```
+cd museko
+flask run
+```
+4. Flask development server defaults to http://127.0.0.1:5000, which you can open in a web browser
 
-2. Navigate to the folder and install Python dependencies: ```cd path/to/Museko && pip3 install -r requirements.txt```
+5. Upload your mp3 files and wait for the genre classification model to analyze it, after which it will display the genre graph and audio visualizer
 
-3. Navigate to the inner museko folder: ```cd museko``` and either ```flask run``` or run ```python3 app.py```
-
-4. Flask development server (flask run) defaults to: http://127.0.0.1:5000, waitress runs port 8080: http://localhost:8080/
-
-5. Ctrl-C to close server when you are done
-  
-
+5. ```Ctrl-C``` to close the server when you are done
