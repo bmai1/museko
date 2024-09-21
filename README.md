@@ -16,7 +16,7 @@ The only way to try out this app would be running it locally.
 
 ## Instructions
 
-1. Clone and and navigate to the repository:
+1. Clone and navigate to the repository:
 ```
 git clone https://github.com/bmai1/Museko.git
 cd Museko
