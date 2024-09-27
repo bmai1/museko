@@ -22,6 +22,11 @@ git clone https://github.com/bmai1/Museko.git
 cd Museko
 ```
 2. Install Python dependencies:
+It is recommended to use a virtual environment.
+```
+python3 -m venv env
+. env/bin/activate
+```
 ```
 pip3 install -r requirements.txt
 ```
