@@ -9,7 +9,7 @@ Museko is a music analysis tool.
 
 
 ## Usage
-Unfortunately, this tool requires too much memory to be hosted online using free services such as Render.
+Unfortunately, this tool requires too much memory to be hosted online using free services.
 The only way to try out this app would be running it locally.
 
 ![OOMkilled](demo/OOMkilled.png)
