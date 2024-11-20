@@ -17,11 +17,7 @@ class Museko:
         self.genre_prediction.pack()
 
     def upload(self):
-<<<<<<< HEAD
-        filepath = askopenfilename(initialdir="/Users/brianmai/Desktop/conv/output")
-=======
         filepath = askopenfilename()
->>>>>>> 9bd6692faac0495726372146916ef80428ae5c83
 
         buffer = classify(filepath) # buffer of matplotlib figure for genre predictions
         image = Image.open(buffer)
@@ -33,10 +29,7 @@ class Museko:
 root = tk.Tk()
 app = Museko(root)
 root.mainloop()
-<<<<<<< HEAD
-=======
 
 # if you don't want to run the flask web app,
 # this bare-bones tkinter window can be run directly with `python3 museko.py`
 # (assuming pillow and tkinter is already installed on your machine)
->>>>>>> 9bd6692faac0495726372146916ef80428ae5c83
