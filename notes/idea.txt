@@ -11,3 +11,8 @@ Goals:
 Reach/Todo:
 - Song Title Detection -> Artist, Album, Date Published
 
+- Style classification with Essentia
+- Breakbeat binary classification (Jupyter Notebook, TensorFlow)
+- Key and BPM (librosa)
+- Web app (Flask, JavaScript, HTML/CSS)
+- Bare-bones GUI (Tkinter)
