@@ -4,7 +4,6 @@ import tempfile
 import yt_dlp
 
 from flask import Flask, render_template, request, send_from_directory, send_file, url_for, jsonify
-from werkzeug.utils import secure_filename
 from essentia_model.genre_discogs400 import classify
 from essentia_model.extract import extract_features
 
@@ -69,17 +68,14 @@ def upload_file():
 
     if file and filename.lower().endswith('.mp3'):
 
-        # secure_filename removes special characters that could potentially be malicious, but then foreign song titles can't be displayed
-
-        original_fn = filename
-        filename = secure_filename(filename) 
+        # secure_filename from werkzeug removes special characters that could potentially be malicious, but then foreign song titles can't be displayed
 
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
 
         file_url = url_for('uploaded_file', filename=filename)
         image_url = url_for('process_file', filename=filename)
-        return jsonify({'filename': original_fn, 'file_url': file_url, 'image_url': image_url, 'features': extract_features(file_path)}), 200
+        return jsonify({'filename': filename, 'file_url': file_url, 'image_url': image_url, 'features': extract_features(file_path)}), 200
     else:
         return jsonify({'error': 'Invalid file format. Only .mp3 files are allowed.'}), 400
 
@@ -99,8 +95,3 @@ def process_file(filename):
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)
-    # http://localhost:8080/
