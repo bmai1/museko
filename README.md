@@ -16,18 +16,20 @@ The only way to try out this app would be running it locally.
 
 ## Instructions
 
+Note: essentia-tensorflow is not supported for Windows.
+
 1. Clone and navigate to the repository:
-```
+```bash
 git clone https://github.com/bmai1/Museko.git
 cd Museko
 ```
-2. Install Python dependencies (slightly over 1 GB due to TensorFlow + stuff). It is recommended to use a virtual environment:
-```
-python3 -m venv env
+2. Install Python dependencies. It is recommended to use a virtual environment:
+```bash
+python -m venv env
 . env/bin/activate
 ```
-```
-pip3 install -r requirements.txt
+```bash
+pip install -r requirements.txt
 ```
 3. Navigate to the inner museko folder and run:
 ```
