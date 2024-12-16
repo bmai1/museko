@@ -3,7 +3,4 @@ flask
 librosa
 matplotlib
 numpy
-werkzeug
 yt-dlp
-tensorflow
-waitress
