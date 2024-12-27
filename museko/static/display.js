@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         downloadStatus.innerText = "Downloading..."
 
-        fetch('/download', {
+        fetch('/convert', {
             method: 'POST',
             body: formData
         })
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     function downloadFile(filePath, fileName) {
-        const downloadUrl = `/get-file?file_path=${encodeURIComponent(filePath)}&file_name=${encodeURIComponent(fileName)}`;
+        const downloadUrl = `/download?file_path=${encodeURIComponent(filePath)}&file_name=${encodeURIComponent(fileName)}`;
     
         fetch(downloadUrl)
             .then(response => response.blob())
@@ -106,9 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } 
             else {
                 uploadStatus.innerText = "Upload successful!";
-
-                // console.log(filename);
-                fileTitle.innerText = `Audio Visualization: ${data.filename}`;
+                fileTitle.innerText = `Audio Visualization: ${data.file_name}`;
                 visualizerContainer.innerHTML = `
                     <div id="motion-container"></div>
                     <div id="audio-container"></div>
