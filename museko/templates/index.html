@@ -14,19 +14,17 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pacifico'>
 </head>
 <body>
+    <!-- Welcome -->
     <div id="overlay"></div>
     <div id="welcomeDiv">
         <h1>Welcome to <span id="museko-text">Museko!</span></h1>
         <a href="https://github.com/bmai1/Museko" target="_blank"><img id="museko-yotsuba" src="{{ url_for('static', filename='yotsuba.png') }}" alt="Museko Yotsuba"></a>
-        <p>
-            Museko is an online music analysis tool that classifies song genres using open-source Essentia TensorFlow models.<br>
-            Includes real-time audio visualization, BPM/key detection, and an mp3 downloader.
-        </p>
-        <button id="startButton" class="btn-grad-blue">Start analyzing</button>
-        <!-- <footer style="font-size: 0.7rem; margin: 15px 0; color: rgb(122, 122, 122);">Made by Mai.</footer> -->
+        <p></p>
+        <button id="startButton" class="btn-grad-blue">BEGIN ANALYZING</button>
     </div>
     
     <div class="grid-container">
+        <!-- Download/upload mp3 widget -->
         <div class="draggable download-upload">
             <div id="download-container">
                 <h3>Download mp3 file (yt-dlp)</h3>
@@ -50,20 +48,20 @@
             </div>
         </div>
 
-        <!-- placeholder for visualizer -->
+        <!-- Placeholder for visualizer -->
         <div class="draggable visualizer">
             <h3 id="file-title">Audio Visualization</h3>
             <div id="visualizer-container"></div>
         </div>
 
-        <!-- placeholder for matplotlib fig.  -->
+        <!-- Placeholder for matplotlib fig.  -->
         <div class="draggable genre-plot">
             <h3>Genre Classification Graph</h3>
             <div id="fig-loader"></div>
             <img id="matplotlib-fig">
         </div>
 
-        <!-- placeholder for analysis results -->
+        <!-- Placeholder for analysis results -->
         <div class="draggable analysis">
             <p>
                 Predicted global BPM: <span id="bpm">N/A</span><br>
@@ -71,7 +69,9 @@
             </p>
         </div>
     </div>
-    <button id="reset-layout" onclick="resetLayout()">Reset Layout</button>
+
+    <!-- <button id="reset-layout" onclick="resetLayout()">Reset Layout</button> -->
+     
     <script src="{{ url_for('static', filename='drag.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='display.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='audioVisualizer.js') }}"></script>
