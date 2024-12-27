@@ -50,7 +50,6 @@ for (let i = 0; i < drag.length; ++i) {
     dragElement(drag[i]);
 }
 
-const resetLayoutButton = document.getElementById("reset-layout");
 let firstDrag = true;
 function dragElement(element) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -65,7 +64,6 @@ function dragElement(element) {
         e.preventDefault();
 
         if (firstDrag) {
-            resetLayoutButton.style.display = "block";
             // keep original grid positions, prevent grid from immediately collapsing on itself
             for (let i = 0; i < drag.length; ++i) {
                 let pos = drag[i].getBoundingClientRect();
@@ -97,15 +95,5 @@ function dragElement(element) {
     function closeDragElement() {
         document.onmouseup = null;
         document.onmousemove = null;
-    }
-}
-
-function resetLayout() {
-    resetLayoutButton.style.display = "none";
-    firstDrag = true;
-    for (let i = 0; i < drag.length; ++i) {
-        drag[i].style.position = "static"; 
-        drag[i].style.top = "0px";
-        drag[i].style.left = "0px";
     }
 }
