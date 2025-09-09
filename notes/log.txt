@@ -1,0 +1,25 @@
+- Music analysis app using Essentia TensorFlow models to classify songs
+
+Goals:
+- Download songs from streaming services such as YouTube, Spotify, SoundCloud via youtube-dl + other open-source
+- BPM/Key Detection similar to TuneBat
+- Genre Prediction using Python audio libraries and open-source TensorFlow models
+- Train personal model on small dataset for binary classification of Drum n Bass
+
+Todo:
+    - Style classification with Essentia
+    - Breakbeat binary classification (Jupyter Notebook, TensorFlow)
+    - Key and BPM (librosa)
+    - Web app (Flask, JavaScript, HTML/CSS)
+    - Bare-bones GUI (Tkinter)
+
+Let's migrate to a desktop app!
+    - Tauri (Rust) + React (TypeScript) + Vite (build tool) + shadcn components (?) + museko Python script as subprocesses
+
+TODO:
+    - Implement Mulette
+        - Discogs/music database API
+        - Randomly draw from input genre
+        - Album, year released, track length, artist, genre plot
+    - Custom audio-visualizer in python/rust/javascript
+    - Extract tensorflow values and create a custom plot (matplotlib placeholder)
