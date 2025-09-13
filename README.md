@@ -2,9 +2,9 @@ Museko is a music analysis tool that I'm making multiple versions of for some re
 Some features include:
 
 - Genre classification with Essentia (discogs EffNet CNN, genre_discogs400)
-- yt-dlp GUI to download YouTube mp3s
+- yt-dlp GUI to download mp3s from [supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
 - Real-time audio visualization with audioMotion-analyzer 
-- Additional song details with librosa and essentia
+- Additional song details
 
 Here is the Flask web app view:
 
@@ -21,8 +21,8 @@ The only way to try out this app would be running it locally. There is a basic t
 
 Note: essentia-tensorflow is not supported for Windows.
 
-1. Install the Flask app (museko.zip) in Releases.
-2. Install Python dependencies. It is recommended to use a virtual environment:
+1. Download `museko.zip` in Releases. It is not recommended to clone this whole repo because it contains too much random stuff.
+3. Install Python dependencies. It is recommended to use a virtual environment:
 ```bash
 cd path/to/museko
 python -m venv env
@@ -43,7 +43,7 @@ flask run
 ## Alternatively
 There is a tkinter GUI (museko.py) located in the inner museko folder on the GitHub repository. It is simpler and faster to use.
 
-``python3 museko.py``
+Download the file and run `python museko.py`.
 
 <img width="695" height="638" alt="tkinter" src="https://github.com/user-attachments/assets/5f707fcd-57b5-4d07-aa00-289712e75b4b" />
 
