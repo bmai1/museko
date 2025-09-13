@@ -3,9 +3,9 @@
 Museko is a music analysis tool that I'm making multiple versions of for some reason (I suck at developing stuff).
 Some features include:
 
-- Genre classification with Essentia (discogs EffNet CNN, genre_discogs400)
+- Music style classification with Essentia from the Discogs taxonomy ([EffNet CNN: genre_discogs400](https://essentia.upf.edu/models.html))
 - yt-dlp GUI to download mp3s from [supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
-- Real-time audio visualization with audioMotion-analyzer 
+- Real-time audio visualization with [audioMotion-analyzer ](https://audiomotion.dev/#/)
 - Additional song details
 - (Not yet implemented) music roulette because gambling addiction
 
