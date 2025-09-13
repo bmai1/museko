@@ -1,3 +1,5 @@
+## What is Museko?
+
 Museko is a music analysis tool that I'm making multiple versions of for some reason (I suck at developing stuff).
 Some features include:
 
@@ -5,6 +7,7 @@ Some features include:
 - yt-dlp GUI to download mp3s from [supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
 - Real-time audio visualization with audioMotion-analyzer 
 - Additional song details
+- (Not yet implemented) music roulette because gambling addiction
 
 Here is the Flask web app view:
 
@@ -46,4 +49,8 @@ There is a tkinter GUI (museko.py) located in the inner museko folder on the Git
 Download the file and run `python museko.py`.
 
 <img width="695" height="638" alt="tkinter" src="https://github.com/user-attachments/assets/5f707fcd-57b5-4d07-aa00-289712e75b4b" />
+
+## Currently in development
+
+A desktop app (msko) with Tauri + Vite + React that will locally store uploaded audio files and have a music roulette feature to draw random tracks from Discogs or some other music database.
 
