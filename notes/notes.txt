@@ -59,8 +59,25 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # Default to port 5000 if PORT not set
     app.run(host='0.0.0.0', port=port)
 
-
 Jupyter:
 - jupyter lab
 - http://localhost:8888/lab
 %matplotlib inline
+
+Node/Homebrew:
+    - Oh my god
+    - Shadcn requires Tailwind
+    - Tailwind requires Node 20.19.0 || >= 22.12.0
+        - use nvm to change version
+    - Homebrew doesn't support MacOS Monterey
+        - no official bottles -> build from source -> i have no storage
+    - Vite/Tailwind arghghghhhh
+
+Tailwind:
+    Prettier:
+        npx prettier --write src/  
+        - format classnames for Tailwind
+    - Tailwind 4 butchered hover apparently
+
+Tauri:
+    npm run tauri dev
