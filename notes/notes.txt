@@ -79,5 +79,9 @@ Tailwind:
         - format classnames for Tailwind
     - Tailwind 4 butchered hover apparently
 
-Tauri:
+Tauri v2:
     npm run tauri dev
+    - notifications are plugins now (install separately rather than allowlist in config)
+        - tauri-plugin-notification = "2.0.0" under dependencies in Cargo.toml
+        - notification doesn't work with onclick on MacOS?
+    - tauri plugins make me want to cry
