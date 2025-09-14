@@ -18,11 +18,11 @@ button:hover {
   color: rgb(255, 255, 255);
 }
 
-.upload-box {
+.file-upload {
   transition: background-color 0.5s ease, border 0.5s ease;
 }
 
-.upload-box:hover {
+/* .file-upload:hover {
   background-color: rgb(41, 41, 41);
   border: 1px solid white;
-}
+} */
