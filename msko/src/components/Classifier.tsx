@@ -1,0 +1,86 @@
+import { useState, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
+import { invoke, convertFileSrc } from '@tauri-apps/api/core';
+import { appDataDir, join } from '@tauri-apps/api/path';
+
+function FileUpload({ onFileProcessed }) {
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop: async (acceptedFiles) => {
+      if (acceptedFiles.length == 1) {
+        // clone uploaded file msko/src/assets/audio (since can't get absolute path from dropzone)
+        const file = acceptedFiles[0];
+        const arrayBuffer = await file.arrayBuffer();
+        const bytes = Array.from(new Uint8Array(arrayBuffer));
+
+        await invoke("save_file", { filename: file.name, bytes });
+        await invoke("classify", { filename: file.name });
+
+        // switch to genre plot
+        onFileProcessed(file.name);
+      }
+    },
+  });
+
+  return (
+    <div
+      {...getRootProps()}
+      className={`file-upload ${isDragActive ? "bg-gray-500 border-white" : ""} rounded-xl border border-gray-500 p-12 text-center`}
+    >
+      <h2 className="mb-4 text-xl">Genre Classification</h2>
+      <input {...getInputProps()} />
+      <p>Drag and drop audio file here</p>
+      <p className="text-sm text-gray-400">or</p>
+      <button className="cursor-pointer rounded-lg bg-gray-700 px-4 py-2 text-gray-500">Browse your files</button>
+    </div>
+    
+  );
+}
+
+
+function GenrePlot({ filename }) {
+    // const [plotPath, setPlotPath] = useState<string | null>(null);
+
+    // // As react can't be async, resolve plot path first
+    // useEffect(() => {
+    //   async function resolvePath() {
+    //     const appDataDirPath = await appDataDir();
+    //     const filePath = await join(
+    //       appDataDirPath,
+    //       `assets/plots/${filename.slice(0, -4)}.png`
+    //     );
+    //     setPlotPath(convertFileSrc(filePath));
+    //   }
+    //   resolvePath();
+    // }, [filename]);
+  
+  const plotPath = `/Users/brianmai/Desktop/20256/museko/msko/src/assets/plots/${filename.slice(0, -4)}.png`
+
+  return (
+    <div>
+      <h2 className="mb-2 text-lg font-bold">Genre Plot for {filename}</h2>
+      {plotPath ? (
+        <img
+          src={convertFileSrc(plotPath)}
+          alt="Genre plot"
+          className="rounded-lg shadow"
+        />
+      ) : (
+        <p>Loading plot...</p>
+      )}
+    </div>
+  );
+}
+
+export default function Classifier() {
+  const [processedFile, setProcessedFile] = useState<string | null>(null);
+  return (
+    <div>
+      {processedFile ? (
+        <GenrePlot filename={processedFile} />
+      ) : (
+        <FileUpload onFileProcessed={setProcessedFile} />
+      )}
+    </div>
+  );
+  
+}
