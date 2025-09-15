@@ -54,3 +54,8 @@ Download the file and run `python museko.py`.
 
 A desktop app (msko) with Tauri + Vite + React that will locally store uploaded audio files and have a music roulette feature to draw random tracks from Discogs or some other music database.
 
+    - Music style classification with Essentia Tensorflow models and Matplotlib
+    - Draw random tracks of a specific genre from the Discogs music database
+    - Desktop app built with Tauri, Vite, and React
+    - Web app built with Flask
+
