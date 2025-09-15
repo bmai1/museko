@@ -85,3 +85,9 @@ Tauri v2:
         - tauri-plugin-notification = "2.0.0" under dependencies in Cargo.toml
         - notification doesn't work with onclick on MacOS?
     - tauri plugins make me want to cry
+
+Python hell:
+    I have everything installed globally on Python 3.10, pip 23.3.2
+    Temporary fix: in ~/.zshrc, alias python=/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10
+    Longer term fix: pyenv to manage python versions
+    - Rust command does not recognize shell aliases...
