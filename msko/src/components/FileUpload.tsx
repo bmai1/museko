@@ -1,11 +1,17 @@
 import { useDropzone } from "react-dropzone";
+import { invoke, convertFileSrc } from '@tauri-apps/api/core';
 
 export default function FileUpload() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: async (acceptedFiles) => {
       if (acceptedFiles.length == 1) {
-        const filepath = "../audio/" + acceptedFiles[0].name;
-        console.log(filepath);
+        // clone uploaded file msko/src/assets/audio (since can't get absolute path from dropzone)
+        const file = acceptedFiles[0];
+        const arrayBuffer = await file.arrayBuffer();
+        const bytes = Array.from(new Uint8Array(arrayBuffer));
+
+        await invoke("save_file", { filename: file.name, bytes });
+        await invoke("classify", { filename: file.name });
       }
     },
   });
