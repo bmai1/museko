@@ -1,54 +1,24 @@
-import { useRef, useState } from "react";
+import { useDropzone } from "react-dropzone";
 
 export default function FileUpload() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isDragActive, setIsDragActive] = useState(false);
-  const dragCounter = useRef(0);
-  
-  return (
-    <div 
-      ref={ref}
-      className={`file-upload ${
-        isDragActive ? "bg-gray-500 border-white" : ""
-      } cursor-pointer rounded-xl border border-gray-500 p-12 text-center`}
-      onDragEnter={(e) => {
-        e.preventDefault();
-        dragCounter.current++;
-        setIsDragActive(true);
-      }}
-      onDragLeave={(e) => {
-        e.preventDefault();
-        dragCounter.current--;
-        if (dragCounter.current === 0) {
-          setIsDragActive(false);
-        }
-      }}
-      onDragOver={(e) => {
-        e.preventDefault();
-      }}
-      onDrop={(e) => {
-        e.preventDefault();
-        dragCounter.current = 0;
-        setIsDragActive(false);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop: async (acceptedFiles) => {
+      if (acceptedFiles.length == 1) {
+        const filepath = "../audio/" + acceptedFiles[0].name;
+        console.log(filepath);
+      }
+    },
+  });
 
-        const files = e.dataTransfer.files;
-        if (files?.length) {
-          console.log("Dropped files:", files);
-        }
-      }}
+  return (
+    <div
+      {...getRootProps()}
+      className={`file-upload ${isDragActive ? "bg-gray-500 border-white" : ""} rounded-xl border border-gray-500 p-12 text-center`}
     >
-    
-      <div className="mb-4 text-4xl">⬆️</div>
-      <p>Drag and drop audio file</p>
+      <input {...getInputProps()} />
+      <p>Drag and drop audio file here</p>
       <p className="text-sm text-gray-400">or</p>
-      <button 
-        className="cursor-pointer rounded-lg bg-gray-700 px-4 py-2 text-gray-500"
-        onClick={() => {
-          console.log("HELP")
-        }}
-      >
-        Browse your files
-      </button>
+      <button className="cursor-pointer rounded-lg bg-gray-700 px-4 py-2 text-gray-500">Browse your files</button>
     </div>
   );
 }
