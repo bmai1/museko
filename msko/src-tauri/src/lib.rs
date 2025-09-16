@@ -27,9 +27,9 @@ pub fn run() {
 
             app.manage(AppDirs { audio_dir, plot_dir });
 
-            // App Data Directory: "/Users/username/Library/Application Support/com.mai.msko"
+            // MacOS: App Data Directory: "/Users/username/Library/Application Support/com.mai.msko"
             // println!("App Data Directory: {:?}", app_data_dir);
-            
+
             Ok(())
         })
         .plugin(tauri_plugin_fs::init())
