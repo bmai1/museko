@@ -7,7 +7,9 @@ function FileUpload({ onFileProcessed }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: async (acceptedFiles) => {
       if (acceptedFiles.length == 1) {
-        // clone uploaded file msko/src/assets/audio (since can't get absolute path from dropzone)
+
+        // console.log(BaseDirectory.AppData);
+
         const file = acceptedFiles[0];
         const arrayBuffer = await file.arrayBuffer();
         const bytes = Array.from(new Uint8Array(arrayBuffer));
@@ -15,7 +17,7 @@ function FileUpload({ onFileProcessed }) {
         await invoke("save_file", { filename: file.name, bytes });
         await invoke("classify", { filename: file.name });
 
-        // switch to genre plot
+        // // switch to genre plot
         onFileProcessed(file.name);
       }
     },
@@ -36,31 +38,24 @@ function FileUpload({ onFileProcessed }) {
   );
 }
 
-
 function GenrePlot({ filename }) {
-    // const [plotPath, setPlotPath] = useState<string | null>(null);
-
-    // // As react can't be async, resolve plot path first
-    // useEffect(() => {
-    //   async function resolvePath() {
-    //     const appDataDirPath = await appDataDir();
-    //     const filePath = await join(
-    //       appDataDirPath,
-    //       `assets/plots/${filename.slice(0, -4)}.png`
-    //     );
-    //     setPlotPath(convertFileSrc(filePath));
-    //   }
-    //   resolvePath();
-    // }, [filename]);
-  
-  const plotPath = `/Users/brianmai/Desktop/20256/museko/msko/src/assets/plots/${filename.slice(0, -4)}.png`
-
+  const [plotPath, setPlotPath] = useState<string | null>(null);
+  useEffect(() => {
+    async function resolvePath() {
+      const appDataDirPath = await appDataDir();
+      const filePath = await join(appDataDirPath, `/plots/${filename.slice(0, -4)}.png`);
+      console.log(filePath);
+      setPlotPath(convertFileSrc(filePath));
+    }
+      resolvePath();
+  }, [filename]);
+    
   return (
     <div>
       <h2 className="mb-2 text-lg font-bold">Genre Plot for {filename}</h2>
       {plotPath ? (
         <img
-          src={convertFileSrc(plotPath)}
+          src={plotPath}
           alt="Genre plot"
           className="rounded-lg shadow"
         />
@@ -82,5 +77,4 @@ export default function Classifier() {
       )}
     </div>
   );
-  
 }
