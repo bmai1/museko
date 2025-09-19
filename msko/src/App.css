@@ -2,10 +2,10 @@
 
 body {
   background-color: black;
-  color: white;
+  /* color: white;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 button {
