@@ -1,5 +1,7 @@
 ## What is Museko?
 
+*(Not supported for Windows as Essentia, the audio classification library used in this project, currently only has Python bindings for macOS and Linux)*
+
 Museko is a music analysis tool that I'm making multiple versions of for some reason (I suck at developing stuff).
 Some features include:
 
@@ -16,37 +18,35 @@ Here is the Flask web app view:
 
 ## Usage
 Unfortunately, this tool requires too much memory to be hosted online using free services.
-The only way to try out this app would be running it locally. There is a basic tkinter window that is quick and easy to use (museko.py), or the app can be run on a browser with flask.
+The only way to try out this app would be running it locally. There is a basic tkinter window that is quick and easy to use, or the web app can be run on a browser with flask.
 
 ![OOMkilled](demo/OOMkilled.png)
 
 ## Instructions
 
-Note: essentia-tensorflow is not supported for Windows.
-
-1. Download `museko.zip` in Releases. It is not recommended to clone this whole repo because it contains too much random stuff.
+1. Download `museko.zip` in [Releases](https://github.com/bmai1/museko/releases). It is not recommended to clone this whole repo because it contains too much random stuff.
 3. Install Python dependencies. It is recommended to use a virtual environment:
 ```bash
 cd path/to/museko
-python -m venv env
+python3 -m venv env
 . env/bin/activate
 ```
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 3. Run Flask development server, which defaults to http://127.0.0.1:5000 and can be viewed in a web browser.
 ```
 flask run
 ```
 
-4. Upload mp3 files for the genre classification models to analyze. It will then display the genre prediction graph and audio visualizer.
+4. Upload mp3 files that you wish to analyze. After a few seconds, it will display the genre prediction graph and audio visualizer.
 
-5. ```Ctrl-C``` to close the server when you are done
+5. ```Ctrl-C``` in the command line to close the server when you are done.
 
 ## Alternatively
-There is a tkinter GUI (museko.py) located in the inner museko folder on the GitHub repository. It is simpler and faster to use.
+There is a tkinter GUI (museko.py) located in the inner museko folder on the GitHub repository. It is simple and only displays the genre plot.
 
-Download the file and run `python museko.py`.
+Download `museko.py` and run `python3 museko.py`.
 
 <img width="695" height="638" alt="tkinter" src="https://github.com/user-attachments/assets/5f707fcd-57b5-4d07-aa00-289712e75b4b" />
 
