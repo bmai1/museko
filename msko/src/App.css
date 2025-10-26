@@ -26,3 +26,10 @@ button:hover {
   background-color: rgb(41, 41, 41);
   border: 1px solid white;
 } */
+
+#museko {
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  background-color: black;
+}
