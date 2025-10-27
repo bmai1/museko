@@ -1,21 +1,29 @@
+import { FiUpload, FiDownload, FiBookOpen, FiCompass } from "react-icons/fi";
+
 export default function Navbar({ page, setPage }) {
   const navItems = [
-    { name: "Upload", value: "upload" },
-    { name: "Download", value: "download" },
-    { name: "Library", value: "library" },
-    { name: "Explore", value: "explore" },
+    { name: "Upload", value: "upload", icon: <FiUpload /> },
+    { name: "Download", value: "download", icon: <FiDownload /> },
+    { name: "Library", value: "library", icon: <FiBookOpen /> },
+    { name: "Explore", value: "explore", icon: <FiCompass /> },
   ];
+
   return (
-    <nav className="mx-auto mt-8 flex w-fit justify-center space-x-6 rounded-full border border-gray-500 p-4">
+    <nav className="mx-auto flex w-full justify-center space-x-10 p-2 border-b border-gray-terminal-light">
+      <div className="absolute left-5 top-4 text-xl font-bold text-white">MUSEKO</div>
       {navItems.map((item) => (
         <button
           key={item.value}
           onClick={() => setPage(item.value)}
-          className={`cursor-pointer transition-colors duration-200 ${page === item.value ? "text-white" : "text-gray-500"}`}
+          className={`flex items-center gap-1.5 cursor-pointer transition-colors duration-200 ${
+            page === item.value ? "text-white" : "text-gray-terminal-light"
+          }`}
         >
-          {item.name}
+          {item.icon}
+          <span>{item.name}</span>
         </button>
       ))}
+      <hr></hr>
     </nav>
   );
 }

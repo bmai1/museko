@@ -13,10 +13,10 @@
     "windows": [
       {
         "title": "msko",
-        "width": 800,
-        "height": 800,
-        "minWidth": 500,
-        "minHeight": 500,
+        "fullscreen": false,
+        "maximized": true,
+        "minWidth": 1000,
+        "minHeight": 750,
         "dragDropEnabled": false
       }
     ],
