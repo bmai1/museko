@@ -1,6 +1,6 @@
 import { FiUpload, FiDownload, FiBookOpen, FiCompass } from "react-icons/fi";
 
-export default function Navbar({ page, setPage }) {
+export default function Navbar({ page, setPage, setSlideUp }) {
   const navItems = [
     { name: "Upload", value: "upload", icon: <FiUpload /> },
     { name: "Download", value: "download", icon: <FiDownload /> },
@@ -10,7 +10,12 @@ export default function Navbar({ page, setPage }) {
 
   return (
     <nav className="mx-auto flex w-full justify-center space-x-10 p-2 border-b border-gray-terminal-mid">
-      <div className="absolute left-5 text-xl font-bold text-white">μseko</div>
+      <div 
+        className="cursor-pointer absolute left-5 text-xl font-bold bg-gradient-to-r from-indigo-200 to-pink-200 hover:from-indigo-300 hover:to-pink-300 transition duration-750 bg-clip-text text-transparent"
+        onClick={() => setSlideUp(false) }
+      >
+        μseko
+      </div>
       {navItems.map((item) => (
         <button
           key={item.value}

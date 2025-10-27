@@ -23,12 +23,12 @@ function App() {
         <h1 className="mb-8 text-6xl font-bold bg-gradient-to-r from-indigo-300 to-pink-300 hover:from-indigo-500 hover:to-pink-500 transition duration-750 bg-clip-text text-transparent">museko</h1>
         <button
           onClick={() => setSlideUp(true)}
-          className="px-6 py-2 text-gray-terminal-light hover:text-white transition-colors duration-200"
+          className="cursor-pointer px-6 py-2 text-gray-terminal-light hover:text-white transition-colors duration-200"
         >
           let’s get started.
         </button>
       </motion.div>
-      <Navbar page={page} setPage={setPage} />
+      <Navbar page={page} setPage={setPage} setSlideUp={setSlideUp} />
       <main className="p-6">
         {page === "upload" && <Upload />}
         {page === "download" && <Download />}

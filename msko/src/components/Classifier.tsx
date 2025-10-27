@@ -27,7 +27,7 @@ function FileUpload({ onFileProcessed }) {
   return (
   <div
     {...getRootProps()}
-    className="relative mt-[10vh] w-100 h-100 file-upload rounded-xl p-12 text-center flex flex-col items-center justify-center space-y-1 overflow-hidden transition-all"
+    className="cursor-pointer relative w-100 h-100 file-upload rounded-xl p-12 text-center flex flex-col items-center justify-center space-y-1 overflow-hidden transition-all"
   >
     <div className="absolute inset-0 rounded-[30px] bg-gray-terminal transition-opacity duration-500" />
     <div
@@ -38,11 +38,12 @@ function FileUpload({ onFileProcessed }) {
     <input {...getInputProps()} className="relative z-10" />
 
     <IoCloudUploadOutline size={150} className="relative z-10 mx-auto" />
-    <p className="relative z-10 text-xl font-bold">Drag and drop file here</p>
+    <p className="relative z-10 text-xl font-bold">Drag and Drop</p>
     <p className="relative z-10 text-lg text-gray-terminal-light">or</p>
-    <button className="relative z-10 cursor-pointer rounded-[30px] bg-gray-terminal-mid py-3 px-5 text-lg text-gray-terminal-light hover:text-white transition-colors duration-200">
+    <button className="relative z-10 cursor-pointer rounded-[30px] bg-gray-terminal-mid py-1.5 px-5 text-lg text-gray-terminal-light hover:text-white transition-colors duration-200">
       Browse files
     </button>
+    <p className="relative z-10 text-[15px] text-gray-terminal-light">.mp3, .flac, .wav</p>
   </div>
 );
 }
