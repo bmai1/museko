@@ -1,26 +1,17 @@
 @import "tailwindcss";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
 
 @theme {
-  --color-gray-terminal: #161618;
+  --color-gray-terminal: #1f1f1f;
+  --color-gray-terminal-mid: #3a3a3a;
   --color-gray-terminal-light: #818181;
 }
 
 body {
   background-color: black;
-  /* color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center; */
-}
-
-button {
-  padding: 7px;
-  margin: 2px;
-  transition: color 0.2s ease;
-}
-
-button:hover {
-  color: rgb(255, 255, 255);
+  font-family: 'Roboto', sans-serif;
 }
 
 .file-upload {

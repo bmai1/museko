@@ -10,10 +10,11 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.2.8",
     "@tailwindcss/vite": "^4.1.13",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-fs": "^2.4.2",
-    "@tauri-apps/plugin-opener": "^2",
+    "@tauri-apps/plugin-opener": "^2.5.1",
     "framer-motion": "^12.23.24",
     "motion": "^12.23.24",
     "react": "^19.1.0",

@@ -1,7 +1,14 @@
+import { motion } from "framer-motion";
+
 export default function Library() {
   return (
-    <div className="mt-8 flex flex-col items-center">
-      <h2 className="mb-4 text-xl">List of songs</h2>
-    </div>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="mt-[3vh] flex flex-col items-center"
+    >
+      <h2 className="mb-4 text-xl">LIST FILES IN APPLICATION SUPPORT / APPDATA</h2>
+    </motion.div>
   );
 }

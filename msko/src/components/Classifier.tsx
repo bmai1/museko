@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { invoke, convertFileSrc } from '@tauri-apps/api/core';
 import { appDataDir, join } from '@tauri-apps/api/path';
+import { IoCloudUploadOutline } from "react-icons/io5";
 
 function FileUpload({ onFileProcessed }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -24,17 +25,26 @@ function FileUpload({ onFileProcessed }) {
   });
 
   return (
+  <div
+    {...getRootProps()}
+    className="relative mt-[10vh] w-100 h-100 file-upload rounded-xl p-12 text-center flex flex-col items-center justify-center space-y-1 overflow-hidden transition-all"
+  >
+    <div className="absolute inset-0 rounded-[30px] bg-gray-terminal transition-opacity duration-500" />
     <div
-      {...getRootProps()}
-      className={`w-[clamp(200px,50vw,800px)] h-[clamp(200px,50vh,800px)] file-upload ${isDragActive ? "bg-gray-500 border-white" : ""} rounded-xl border border-gray-500 p-12 text-center`}
-    >
-      <input {...getInputProps()} />
-      <p className="mt-[3vh] text-[clamp(1rem,2vw,2.5rem)]">Drag and drop audio file here</p>
-      <p className="text-[clamp(1rem,2vw,2.5rem)] mb-[1vh] text-gray-400">or</p>
-      <button className="cursor-pointer rounded-lg bg-gray-700 px-4 py-2 text-[clamp(1rem,1.5vw,2rem)] text-gray-500">Browse your files</button>
-    </div>
-    
-  );
+      className={`absolute inset-0 rounded-[30px] bg-white transition-opacity duration-500 ${
+        isDragActive ? "opacity-30" : "opacity-0"
+      }`}
+    />
+    <input {...getInputProps()} className="relative z-10" />
+
+    <IoCloudUploadOutline size={150} className="relative z-10 mx-auto" />
+    <p className="relative z-10 text-xl font-bold">Drag and drop file here</p>
+    <p className="relative z-10 text-lg text-gray-terminal-light">or</p>
+    <button className="relative z-10 cursor-pointer rounded-[30px] bg-gray-terminal-mid py-3 px-5 text-lg text-gray-terminal-light hover:text-white transition-colors duration-200">
+      Browse files
+    </button>
+  </div>
+);
 }
 
 function GenrePlot({ filename }) {

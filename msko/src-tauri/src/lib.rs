@@ -1,5 +1,5 @@
-use tauri::Manager;
 use std::path::PathBuf;
+use tauri::Manager;
 use tauri::State;
 
 struct AppDirs {
@@ -10,22 +10,27 @@ struct AppDirs {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_fs::init())
         .setup(|app| {
-            let app_data_dir = app.path().app_data_dir().expect("Failed to resolve app data directory");
+            let app_data_dir = app
+                .path()
+                .app_data_dir()
+                .expect("Failed to resolve app data directory");
 
             let audio_dir = app_data_dir.join("audio");
             if !audio_dir.exists() {
-                std::fs::create_dir_all(&audio_dir)
-                    .expect("Failed to create audio directory");
+                std::fs::create_dir_all(&audio_dir).expect("Failed to create audio directory");
             }
             let plot_dir = app_data_dir.join("plots");
             if !plot_dir.exists() {
-                std::fs::create_dir_all(&plot_dir)
-                    .expect("Failed to create plot directory");
+                std::fs::create_dir_all(&plot_dir).expect("Failed to create plot directory");
             }
 
-            app.manage(AppDirs { audio_dir, plot_dir });
+            app.manage(AppDirs {
+                audio_dir,
+                plot_dir,
+            });
 
             // MacOS: App Data Directory: "/Users/username/Library/Application Support/com.mai.msko"
             // println!("App Data Directory: {:?}", app_data_dir);
@@ -39,7 +44,11 @@ pub fn run() {
 }
 
 #[tauri::command]
-async fn save_file(state: State<'_, AppDirs>, filename: String, bytes: Vec<u8>) -> Result<(), String> {
+async fn save_file(
+    state: State<'_, AppDirs>,
+    filename: String,
+    bytes: Vec<u8>,
+) -> Result<(), String> {
     use std::fs;
 
     let mut audio_path = state.audio_dir.clone();
@@ -52,9 +61,10 @@ async fn save_file(state: State<'_, AppDirs>, filename: String, bytes: Vec<u8>) 
 
 #[tauri::command]
 fn classify(state: State<'_, AppDirs>, filename: String) -> Result<(), String> {
-
     let audio_path = state.audio_dir.clone().join(&filename);
-    let plot_path = state.plot_dir.join(format!("{}.png", filename.trim_end_matches(".mp3")));
+    let plot_path = state
+        .plot_dir
+        .join(format!("{}.png", filename.trim_end_matches(".mp3")));
 
     // Python script path (always relative to src-tauri/src/classify/msko.py)
     let script_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("src/classify/msko.py");

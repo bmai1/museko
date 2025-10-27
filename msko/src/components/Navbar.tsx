@@ -9,13 +9,13 @@ export default function Navbar({ page, setPage }) {
   ];
 
   return (
-    <nav className="mx-auto flex w-full justify-center space-x-10 p-2 border-b border-gray-terminal-light">
-      <div className="absolute left-5 top-4 text-xl font-bold text-white">MUSEKO</div>
+    <nav className="mx-auto flex w-full justify-center space-x-10 p-2 border-b border-gray-terminal-mid">
+      <div className="absolute left-5 text-xl font-bold text-white">μseko</div>
       {navItems.map((item) => (
         <button
           key={item.value}
           onClick={() => setPage(item.value)}
-          className={`flex items-center gap-1.5 cursor-pointer transition-colors duration-200 ${
+          className={`flex items-center gap-1.5 cursor-pointer hover:text-white transition-colors duration-200 ${
             page === item.value ? "text-white" : "text-gray-terminal-light"
           }`}
         >
