@@ -9,10 +9,10 @@ export default function Navbar({ page, setPage, setSlideUp }) {
   ];
 
   return (
-    <nav className="mx-auto flex w-full justify-center space-x-10 p-2 border-b border-gray-terminal-mid">
-      <div 
-        className="cursor-pointer absolute left-5 text-xl font-bold bg-gradient-to-r from-indigo-200 to-pink-200 hover:from-indigo-300 hover:to-pink-300 transition duration-750 bg-clip-text text-transparent"
-        onClick={() => setSlideUp(false) }
+    <nav className="border-gray-terminal-mid absolute z-49 mx-auto flex w-full justify-center space-x-10 border-b p-2">
+      <div
+        className="absolute left-5 cursor-pointer bg-gradient-to-r from-indigo-200 to-pink-200 bg-clip-text text-xl font-bold text-transparent transition duration-750 hover:from-indigo-300 hover:to-pink-300"
+        onClick={() => setSlideUp(false)}
       >
         μseko
       </div>
@@ -20,7 +20,7 @@ export default function Navbar({ page, setPage, setSlideUp }) {
         <button
           key={item.value}
           onClick={() => setPage(item.value)}
-          className={`flex items-center gap-1.5 cursor-pointer hover:text-white transition-colors duration-200 ${
+          className={`flex cursor-pointer items-center gap-1.5 transition-colors duration-200 hover:text-white ${
             page === item.value ? "text-white" : "text-gray-terminal-light"
           }`}
         >

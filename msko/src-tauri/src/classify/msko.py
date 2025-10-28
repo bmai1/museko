@@ -54,13 +54,13 @@ def classify(filename):
     # NSInternalInconsistencyException', reason: 'NSWindow drag regions should only be invalidated on the Main Thread!
 
     plt.switch_backend('Agg') 
-    plt.figure(figsize=(6, 6))
-    plt.bar(top_genres, top_scores, color='skyblue')
+    # plt.style.use('dark_background')
+    plt.figure(figsize=(7, 5))
+    plt.bar(top_genres, top_scores, color='black')
     plt.xlabel('Genres')
 
     # Average prediction scores = Confidence Level C, if taking many samples the score approaches C
     plt.ylabel('Confidence Level')
-    plt.title(f'Top {top_n} Predicted Genres')
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
 
@@ -68,7 +68,7 @@ def classify(filename):
 
     # save plot image to serve with flask
     buffer = io.BytesIO()
-    plt.savefig(buffer, format='png')
+    plt.savefig(buffer, format='png', transparent=True)
     buffer.seek(0)
     plt.close()
 
@@ -80,7 +80,7 @@ def main():
 
     buffer = classify(audiopath)
     image = Image.open(buffer)
-    image = image.resize((400, 400), Image.LANCZOS)
+    image = image.resize((700, 500), Image.LANCZOS)
 
     image.save(plotpath, format='PNG')
 

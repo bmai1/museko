@@ -1,33 +1,83 @@
-import Draggable from 'react-draggable';
+import Draggable from "react-draggable";
 import Classifier from "../components/Classifier";
-import { openUrl } from '@tauri-apps/plugin-opener';
-import { useRef } from 'react';
+import { openUrl } from "@tauri-apps/plugin-opener";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 
-export default function Upload() {
+export default function Upload({ setPage }) {
+  const [processedFile, setProcessedFile] = useState<string | null>(null);
   const nodeRef = useRef(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 }); // for radial cursor gradient
   return (
-    <div className="mt-[3vh] flex flex-col items-center">
-      <p className="text-l mb-3 text-gray-terminal-light">
-        Upload your audio file for genre classification using Essentia's{" "}
-        <span 
-          className="cursor-pointer hover:text-white transition-colors duration-200" 
-          onClick={() => { openUrl("https://essentia.upf.edu/models.html") }}
-        >
-          genre_discogs400-discogs-effnet
-        </span>{" "}
-        model.
-      </p>
-      
-      <Draggable
-        nodeRef={nodeRef}
-      >
-        <div 
+    <motion.div
+      initial={{ y: "100%", opacity: 0 }}
+      animate={{ y: "0%", opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="mt-[3vh] flex flex-col items-center"
+    >
+      <div className="mt-3 flex flex-col items-center">
+        {!processedFile ? (
+          <motion.p
+            key="upload-message"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-l text-gray-terminal-light mt-10 mb-3 ml-[-25px]"
+          >
+            Upload your audio file for genre classification using Essentia's{" "}
+            <span
+              className="cursor-pointer transition-colors duration-200 hover:text-white"
+              onClick={() => openUrl("https://essentia.upf.edu/models.html")}
+            >
+              genre_discogs400-discogs-effnet
+            </span>{" "}
+            model.
+          </motion.p>
+        ) : (
+          <motion.div
+            key="upload-navbar"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <button
+              className="border-gray-terminal-light mx-2 mt-7 ml-[-25px] cursor-pointer rounded-full border px-5 py-3"
+              onClick={() => {
+                setProcessedFile(null);
+                setPage("upload");
+              }}
+            >
+              Upload new file
+            </button>
+            <button className="border-gray-terminal-light mx-2 cursor-pointer rounded-full border px-5 py-3">
+              View full taxonomy
+            </button>
+          </motion.div>
+        )}
+      </div>
+
+      <Draggable nodeRef={nodeRef}>
+        <div
+          onMouseMove={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            setPos({ x, y });
+          }}
           ref={nodeRef}
-          className="bg-gradient-to-br from-indigo-200 to-pink-200 shadow-lg shadow-white/20 mt-[3vh] rounded-xl w-200 h-150 z-10 bg-black flex items-center justify-center"
+          className="z-10 mt-[3vh] ml-[-25px] flex h-150 w-200 cursor-move items-center justify-center rounded-[30px] bg-indigo-300 transition-colors duration-200"
+          style={{
+            backgroundImage: `radial-gradient(circle at ${pos.x}px ${pos.y}px, #fccee8, transparent 200%)`,
+          }}
         >
-          <Classifier />
+          <Classifier
+            processedFile={processedFile}
+            setProcessedFile={setProcessedFile}
+          />
         </div>
       </Draggable>
-    </div>
+    </motion.div>
   );
 }
