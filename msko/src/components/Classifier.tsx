@@ -4,21 +4,34 @@ import { invoke, convertFileSrc } from "@tauri-apps/api/core";
 import { appDataDir, join } from "@tauri-apps/api/path";
 import { IoCloudUploadOutline } from "react-icons/io5";
 
-function FileUpload({ onFileProcessed }) {
+function FileUpload({ onFileProcessed, setIsProcessing, setGenrePlotReady }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: async (acceptedFiles) => {
       if (acceptedFiles.length == 1) {
         // console.log(BaseDirectory.AppData);
 
         const file = acceptedFiles[0];
-        const arrayBuffer = await file.arrayBuffer();
-        const bytes = Array.from(new Uint8Array(arrayBuffer));
+        setIsProcessing(true);
+        setGenrePlotReady(false);
 
-        await invoke("save_file", { filename: file.name, bytes });
-        await invoke("classify", { filename: file.name });
+        try {
+          const arrayBuffer = await file.arrayBuffer();
+          const bytes = Array.from(new Uint8Array(arrayBuffer));
 
-        // switch to genre plot
-        onFileProcessed(file.name);
+          await invoke("save_file", { filename: file.name, bytes });
+
+          // run classify async to not block ui
+          invoke("classify", { filename: file.name })
+            .then(() => {
+              onFileProcessed(file.name);
+              setGenrePlotReady(true);
+            })
+            .finally(() => setIsProcessing(false));
+        } 
+        catch (err) {
+          console.error(err);
+          setIsProcessing(false);
+        }
       }
     },
   });
@@ -91,13 +104,22 @@ export default function Classifier({
   processedFile,
   setProcessedFile,
 }: fileProps) {
+  const [genrePlotReady, setGenrePlotReady] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+
   return (
-    <div className="">
-      {processedFile ? (
-        <GenrePlot filename={processedFile} />
-      ) : (
-        <FileUpload onFileProcessed={setProcessedFile} />
+    <div className="mt-1">
+      {!processedFile && !isProcessing && (
+        <FileUpload
+          onFileProcessed={setProcessedFile}
+          setIsProcessing={setIsProcessing}
+          setGenrePlotReady={setGenrePlotReady}
+        />
       )}
+
+      {isProcessing && <p className="text-black">Loading...</p>}
+
+      {processedFile && genrePlotReady && <GenrePlot filename={processedFile} />}
     </div>
   );
 }

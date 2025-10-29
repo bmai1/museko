@@ -5,9 +5,10 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Upload({ setPage }) {
-  const [processedFile, setProcessedFile] = useState<string | null>(null);
+  const [processedFile, setProcessedFile] = useState(null);
   const nodeRef = useRef(null);
   const [pos, setPos] = useState({ x: 0, y: 0 }); // for radial cursor gradient
+
   return (
     <motion.div
       initial={{ y: "100%", opacity: 0 }}
@@ -67,9 +68,9 @@ export default function Upload({ setPage }) {
             setPos({ x, y });
           }}
           ref={nodeRef}
-          className="z-10 mt-[3vh] ml-[-25px] flex h-150 w-200 cursor-move items-center justify-center rounded-[30px] bg-indigo-300 transition-colors duration-200"
+          className={`z-10 ml-[-25px] flex ${processedFile ? "h-150 w-200 mt-[3vh]" : "h-101 w-102 mt-[10vh]" } cursor-move items-center justify-center rounded-[30px] bg-indigo-300 transition-[colors,width,height] duration-500`}
           style={{
-            backgroundImage: `radial-gradient(circle at ${pos.x}px ${pos.y}px, #fccee8, transparent 200%)`,
+            backgroundImage: `radial-gradient(circle at ${pos.x}px ${pos.y}px, #fccee8, transparent 100%)`,
           }}
         >
           <Classifier
