@@ -67,7 +67,7 @@ fn classify(state: State<'_, AppDirs>, filename: String) -> Result<(), String> {
         .join(format!("{}.png", filename.trim_end_matches(".mp3")));
 
     // Python script path (always relative to src-tauri/src/classify/msko.py)
-    let script_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("src/classify/msko.py");
+    let script_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("src/classify/classifier.py");
 
     // println!("Audio path: {:?}", audio_path);
     // println!("Plot path: {:?}", plot_path);

@@ -8,8 +8,7 @@ from PIL import Image
 from essentia.standard import MonoLoader, TensorflowPredictEffnetDiscogs, TensorflowPredict2D
 from genre_data import genre_names
 
-def classify(filename):
-    # Absolute paths for models
+def classify(audio_path):
     base_dir = os.path.abspath(os.path.dirname(__file__))
     effnet_model_path = os.path.join(base_dir, "discogs-effnet-bs64-1.pb")
     genre_model_path = os.path.join(base_dir, "genre_discogs400-discogs-effnet-1.pb")
@@ -19,7 +18,7 @@ def classify(filename):
     if not os.path.exists(genre_model_path):
         raise FileNotFoundError(f"Genre model file not found at {genre_model_path}")
     
-    audio = MonoLoader(filename=filename, sampleRate=16000, resampleQuality=4)()
+    audio = MonoLoader(filename=audio_path, sampleRate=16000, resampleQuality=4)()
 
     # Extract embeddings
     embedding_model = TensorflowPredictEffnetDiscogs(
@@ -28,13 +27,13 @@ def classify(filename):
     )
     embeddings = embedding_model(audio)
 
-    # Predict with genre classification model
-    model = TensorflowPredict2D(
+    # Predict with genre classification model using embeddings
+    genre_model = TensorflowPredict2D(
         graphFilename=genre_model_path,
         input="serving_default_model_Placeholder", 
         output="PartitionedCall:0"
     )
-    predictions = model(embeddings)
+    predictions = genre_model(embeddings)
     average_predictions = np.mean(predictions, axis=0)
 
     # Sort genres by average prediction scores
@@ -46,8 +45,6 @@ def classify(filename):
     top_n = 10
     top_genres = sorted_genres[:top_n]
     top_scores = sorted_predictions[:top_n]
-
-    # Plot the results
 
     # IMPORTANT: switch to Agg to prevent crashing on MacOS, so server doesn't create and destroy GUI windows
     # UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
@@ -64,9 +61,6 @@ def classify(filename):
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
 
-    # plt.show()
-
-    # save plot image to serve with flask
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png', transparent=True)
     buffer.seek(0)
@@ -75,14 +69,14 @@ def classify(filename):
     return buffer
 
 def main():
-    audiopath = sys.argv[1]
-    plotpath = sys.argv[2]
+    audio_path = sys.argv[1]
+    plot_path = sys.argv[2]
 
-    buffer = classify(audiopath)
+    buffer = classify(audio_path)
     image = Image.open(buffer)
     image = image.resize((700, 500), Image.LANCZOS)
 
-    image.save(plotpath, format='PNG')
+    image.save(plot_path, format='PNG')
 
 if __name__ == '__main__':
     main()
