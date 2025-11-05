@@ -11,7 +11,7 @@ export default function Upload({ setPage }) {
 
   return (
     <motion.div
-      initial={{ y: "100%", opacity: 0 }}
+      initial={{ y: "0%", opacity: 0 }}
       animate={{ y: "0%", opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="mt-[3vh] flex flex-col items-center"
@@ -28,7 +28,7 @@ export default function Upload({ setPage }) {
           >
             Upload your audio file for genre classification using Essentia's{" "}
             <span
-              className="cursor-pointer transition-colors duration-200 hover:text-white"
+              className="cursor-pointer hover:text-white"
               onClick={() => openUrl("https://essentia.upf.edu/models.html")}
             >
               genre_discogs400-discogs-effnet
