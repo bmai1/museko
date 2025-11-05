@@ -24,8 +24,8 @@ The only way to try out this app would be to run it locally.
 
 ## Instructions
 
-1. Download `museko.zip` in [Releases](https://github.com/bmai1/museko/releases). It is not recommended to clone this whole repo because it contains too much random stuff.
-3. Install Python dependencies. It is recommended to use a virtual environment:
+1. Download `museko.zip` in [Releases](https://github.com/bmai1/museko/releases) and unzip.
+3. Install Python dependencies. `essentia-tensorflow` may require `tensorflow` to be installed. It is recommended to use a virtual environment:
 ```bash
 cd path/to/museko
 python3 -m venv env
