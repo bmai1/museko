@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             const fileTitle           = document.getElementById('file-title'),
                   visualizerContainer = document.getElementById('visualizer-container'),
+                  visualizerLabel = document.getElementById('visualizer-label'),
                   figLoader           = document.getElementById('fig-loader'),
                   matplotlibFig       = document.getElementById('matplotlib-fig'),
                   bpm                 = document.getElementById('bpm'),
@@ -89,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
             else {
                 uploadStatus.innerText = "Upload successful!";
                 fileTitle.innerText = data.file_name;
+                visualizerLabel.style.display = 'block';
                 visualizerContainer.innerHTML = `
                     <div id="motion-container"></div>
                     <div id="audio-container"></div>

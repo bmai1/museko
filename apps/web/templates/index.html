@@ -13,11 +13,11 @@
 <body>
     <div>
         <div id="header">
-            <h1>Museko; <span style="color: gray;">music <a>classification</a> and <a>discovery</a> tool</span></h1>
+            <h2>Museko; <span style="color: gray;">music <a>classification</a> and <a>discovery</a> tool</span></h1>
         </div>
         <div id="download">
             <div id="download-container">
-                <h3>Download file with URL (yt-dlp)</h3>
+                <h3>Download file with URL (via <a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a>)</h3>
                 <p>Supports YouTube, SoundCloud, and <a href="https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md" target="_blank">more</a>.</p>
                 <form id="mp3-download" method="post" action="/download">
                     <input type="text" name="url" id="urlInput" placeholder="Enter URL here" size="19">
@@ -42,6 +42,7 @@
         <div id="result-container">
             <div id="visualizer">
                 <h3 id="file-title"></h3>
+                <p id="visualizer-label">x=frequency, y=decibels</p>
                 <div id="visualizer-container">
                     <img src="{{ url_for('static', filename='alovesupreme.webp') }}" style="height: 100%;">
 
