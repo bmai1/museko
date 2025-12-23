@@ -1,29 +1,11 @@
 import { initAudioVisualizer } from "./audioVisualizer.js";
 
-// Welcome div fadein and fadeout
 document.addEventListener("DOMContentLoaded", function () {
-    const welcomeDiv        = document.getElementById('welcomeDiv'),
-          overlay           = document.getElementById('overlay'),
-          startButton       = document.getElementById('startButton'),
-          downloadForm      = document.getElementById('mp3-download'),
+    const downloadForm      = document.getElementById('mp3-download'),
           downloadStatus    = document.getElementById('download-status'),
           uploadForm        = document.getElementById('mp3-upload'),
           uploadStatus      = document.getElementById('upload-status'),
           fileInput         = document.getElementById('file-input');
-
-    setTimeout(() => {
-        welcomeDiv.style.opacity = 1;
-    }, 100);
-
-    startButton.addEventListener('click', function () {
-        welcomeDiv.style.opacity = 0;
-        overlay.style.opacity = 0;
-
-        setTimeout(() => {
-            welcomeDiv.style.display = 'none';
-            overlay.style.display = 'none';
-        }, 500);
-    });
 
     // Download mp3 files from YouTube with yt-dl
     downloadForm.addEventListener('submit', function(event) {
@@ -106,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } 
             else {
                 uploadStatus.innerText = "Upload successful!";
-                fileTitle.innerText = `Audio Visualization: ${data.file_name}`;
+                fileTitle.innerText = data.file_name;
                 visualizerContainer.innerHTML = `
                     <div id="motion-container"></div>
                     <div id="audio-container"></div>
@@ -119,8 +101,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     figLoader.style.display = 'none';
                     matplotlibFig.style.opacity = 1;
                 }, 2000);
-                bpm.innerText = data.features[0];
-                key.innerText = `${data.features[1]} ${data.features[2]}`;
+                bpm.innerText = `Predicted BPM: ${data.features[0]}`;
+                key.innerText = `Predicted key: ${data.features[1]} ${data.features[2]}`;
             }
         })
         .catch(error => {

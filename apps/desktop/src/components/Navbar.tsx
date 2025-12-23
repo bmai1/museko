@@ -11,7 +11,7 @@ export default function Navbar({ page, setPage, setSlideUp }) {
   return (
     <nav className="border-gray-terminal-mid absolute z-49 mx-auto flex w-full justify-center space-x-10 border-b p-2">
       <div
-        className="absolute left-5 cursor-pointer bg-gradient-to-r from-indigo-200 to-pink-200 bg-clip-text text-xl font-bold text-transparent transition duration-750 hover:from-indigo-300 hover:to-pink-300"
+        className="absolute left-5 cursor-pointer bg-white bg-clip-text text-xl font-bold text-transparent"
         onClick={() => setSlideUp(false)}
       >
         μseko

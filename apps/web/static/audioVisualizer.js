@@ -16,12 +16,14 @@ export function initAudioVisualizer(file_url) {
 
     audioMotion = new AudioMotionAnalyzer(motionContainer, {
         source: audioEl,
-        // mode: 1, // 1/24th (240) octave bands
+        mode: 1, // 1/24th (240) octave bands
+        showBgColor: true,
         showPeaks: false,
-        gradient: 'steelblue',
         showScaleX: true, // frequency or notes
         showScaleY: true,  // decibels
         maxDecibels: -20,
-        // overlay: true,
+        overlay: true,
+        bgAlpha: 0,
+        gradient: 'rainbow',
     });
 }

@@ -1,4 +1,3 @@
-import Draggable from "react-draggable";
 import Classifier from "../components/Classifier";
 import { openUrl } from "@tauri-apps/plugin-opener";
 import { useRef, useState } from "react";
@@ -7,23 +6,14 @@ import { motion } from "framer-motion";
 export default function Upload({ setPage }) {
   const [processedFile, setProcessedFile] = useState(null);
   const nodeRef = useRef(null);
-  const [pos, setPos] = useState({ x: 0, y: 0 }); // for radial cursor gradient
 
   return (
-    <motion.div
-      initial={{ y: "0%", opacity: 0 }}
-      animate={{ y: "0%", opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+    <div
       className="mt-[3vh] flex flex-col items-center"
     >
       <div className="mt-3 flex flex-col items-center">
         {!processedFile ? (
-          <motion.p
-            key="upload-message"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+          <p
             className="text-l text-gray-terminal-light mt-10 mb-3 ml-[-25px]"
           >
             Upload your audio file for genre classification using Essentia's{" "}
@@ -34,7 +24,7 @@ export default function Upload({ setPage }) {
               genre_discogs400-discogs-effnet
             </span>{" "}
             model.
-          </motion.p>
+          </p>
         ) : (
           <motion.div
             key="upload-navbar"
@@ -58,19 +48,12 @@ export default function Upload({ setPage }) {
           </motion.div>
         )}
       </div>
-
-      <Draggable nodeRef={nodeRef}>
         <div
-          onMouseMove={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            setPos({ x, y });
-          }}
+  
           ref={nodeRef}
-          className={`z-10 ml-[-25px] flex ${processedFile ? "h-150 w-200 mt-[3vh]" : "h-101 w-102 mt-[10vh]" } cursor-move items-center justify-center rounded-[30px] bg-indigo-300 transition-[colors,width,height] duration-500`}
+          className={`z-10 ml-[-25px] flex ${processedFile ? "h-150 w-200 mt-[3vh]" : "h-101 w-102 mt-[10vh]" } cursor-move items-center justify-center rounded-[30px]transition-[colors,width,height] duration-500`}
           style={{
-            backgroundImage: `radial-gradient(circle at ${pos.x}px ${pos.y}px, #fccee8, transparent 100%)`,
+            
           }}
         >
           <Classifier
@@ -78,7 +61,6 @@ export default function Upload({ setPage }) {
             setProcessedFile={setProcessedFile}
           />
         </div>
-      </Draggable>
-    </motion.div>
+    </div>
   );
 }
