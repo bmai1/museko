@@ -24,6 +24,6 @@ export function initAudioVisualizer(file_url) {
         maxDecibels: -20,
         overlay: true,
         bgAlpha: 0,
-        gradient: 'rainbow',
+        gradient: 'steelblue',
     });
 }
