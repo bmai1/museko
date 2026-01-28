@@ -16,28 +16,30 @@ body {
     font-size: 12px;
 }
 
+p {
+    font-size: 12px;
+}
+
 #header {
     width: 100%;
     max-width: 1000px;
     border-bottom: 1px solid #ccc;
     margin-top: 30px;
+    margin-bottom: 40px;
 }
 
-/* #header a:hover {
-    text-decoration: underline;
-} */
-
-#download, #upload {
+#download, #upload, #discogs-roll {
     width: 100%;
     max-width: 1000px;
-    margin-bottom: 30px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
 }
 
 /* Upload status text */
 #upload-status {
     font-size: 14px;
 }
-
 
 #result-container {
     width: 100%;
@@ -52,13 +54,10 @@ body {
 
 #visualizer {
     width: 100%;
-    margin-bottom: 20px;
 }
 
 #visualizer-container {
     width: 700px;
-    height: 370px;
-    /* background-color: red; */
 }
 
 #visualizer-label {
@@ -79,7 +78,19 @@ audio {
 
 #genre-plot {
     width: 100%;
-    margin-bottom: 20px;
+}
+
+#release-container {
+    margin-top: 50px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+#release-cover {
+    height: 500px;
 }
 
 #footer {

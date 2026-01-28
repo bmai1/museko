@@ -13,7 +13,8 @@
 <body>
     <div>
         <div id="header">
-            <h2>Museko; <span style="color: gray;">music <a>classification</a> and <a>discovery</a> tool</span></h1>
+            <h1>Museko</h1>
+            <p>Genre classification and Discogs discovery tool</p>
         </div>
         <div id="download">
             <div id="download-container">
@@ -39,13 +40,56 @@
             </div>
         </div>
 
-        <div id="result-container">
+        <div id="discogs-roll">
+            <h3>Draw a random release from Discogs</h3>
+            <form method="post" action="/roll">
+            <input
+                type="text"
+                name="query"
+                id="discogs-roll-genre"
+                value="{{ query }}"
+                placeholder="Filter by genre (optional)"
+                autocomplete="off"
+                size="20"
+            >
+            <input id="submit-button" type="submit" value="Search">
+            </form>
+        </div>
+
+        <div id="result-container" class="flex-center">
+            {% if release %}
+                <div class="flex-center">
+                    <div>
+                        <h1 id="release-title">{{ release.title }} - {{ artist_names }} </h1>
+                        <img id="release-cover" src="{{ image_url }}" alt="Discogs release image">
+                    </div>
+                    <div style="margin-top: 45px; padding-left: 30px;">
+                        <p> Release Discogs ID: {{ release_id }}</p>
+                        {% if release.genres %} 
+                            <p>Genres: 
+                            {% for g in release.genres %}
+                                {{ g | safe }}{% if g != release.genres | last %}, {% endif %}
+                            {% endfor %}
+                            </p>
+                        {% endif %}
+
+                        {% for t in release.tracklist %}
+                            <p>{{ t.position }}<span style="margin-left:5px;"> </span>
+                            {{ t.title }}
+                            {% if t.duration != "" %}
+                                - {{ t.duration }}
+                            {% endif %}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
             <div id="visualizer">
                 <h3 id="file-title"></h3>
                 <p id="visualizer-label">x=frequency, y=decibels</p>
                 <div id="visualizer-container">
-                    <img src="{{ url_for('static', filename='alovesupreme.webp') }}" style="height: 100%;">
-
+                    <!-- <img src="{{ url_for('static', filename='alovesupreme.webp') }}" style="height: 100%;"> -->
                 </div>
             </div>
     
@@ -57,10 +101,10 @@
                     <p id="key"></p>
                 </div>
             </div>
-            <div id="footer">Last updated on 23 December 2025. Source code available on <a href="https://github.com/bmai1/museko/tree/main/apps/web" target="_blank">GitHub</a>.</div>
+            <div id="footer">
+                <p>Last updated on 28 January 2026. Source code available on <a href="https://github.com/bmai1/museko/tree/main/apps/web" target="_blank">GitHub</a>.</p>
+            </div>
         </div>
-
-
     </div>
      
     <script src="{{ url_for('static', filename='drag.js') }}"></script>

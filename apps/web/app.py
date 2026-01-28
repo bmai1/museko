@@ -1,9 +1,11 @@
+import discogs_client
 import os
+import random
 import tempfile
 import yt_dlp
 
 from flask import (
-    Flask, render_template, request,
+    Flask, redirect, render_template, request,
     send_from_directory, send_file,
     url_for, jsonify
 )
@@ -17,6 +19,7 @@ temp_dir = tempfile.TemporaryDirectory()
 app.config['UPLOAD_FOLDER'] = temp_dir.name
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['JSON_AS_ASCII'] = False
+d = discogs_client.Client('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36')
 
 @app.route('/')
 def index():
@@ -115,6 +118,45 @@ def serve_file(file_name):
     """
     return send_from_directory(app.config['UPLOAD_FOLDER'], file_name)
 
+def generate_track_id(query=""):
+    """
+    Generates valid Discogs release IDs.
+    """
+    for _ in range(1000):
+        track_id = random.randint(1, 36000000)
+        try:
+            release = d.release(track_id) # A lazy reference won't raise a 404 error here, so fields from this release must be accessed.
+            if query and query.lower() not in [g.lower() for g in release.genres]:
+                continue
+            if len(release.tracklist) < 15:
+                return track_id
+        except discogs_client.exceptions.HTTPError as e:
+            print(f"Track ID {track_id} failed with HTTPError: {e}")
+            continue
+        
+@app.route('/roll', methods=['POST'])
+def roll():
+    query = request.form.get("query", "")
+    release_id = generate_track_id(query)
+    return redirect(url_for('show_release', release_id=release_id))
+
+@app.route('/<int:release_id>')
+def show_release(release_id):
+    release = d.release(release_id)
+    artist_names = ", ".join(artist.name for artist in release.artists)
+
+    if release.images:
+        image_url = release.images[0]["uri"]
+    else:
+        image_url = "static/unavailable.png"
+
+    return render_template(
+        'index.html',
+        release=release,
+        release_id=release_id,
+        artist_names=artist_names,
+        image_url=image_url
+    )
 
 @app.route('/prediction/<file_name>', methods=['GET'])
 def process_file(file_name):
