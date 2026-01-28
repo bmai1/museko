@@ -60,13 +60,13 @@
             {% if release %}
                 <div class="flex-center">
                     <div>
-                        <h1 id="release-title">{{ release.title }} - {{ artist_names }} </h1>
+                        <h2 id="release-title">{{ release.title }} - {{ artist_names }}</h2>
                         <img id="release-cover" src="{{ image_url }}" alt="Discogs release image">
                     </div>
-                    <div style="margin-top: 45px; padding-left: 30px;">
-                        <p> Release Discogs ID: {{ release_id }}</p>
+                    <div id="release-info">
+                        <p><span class="bold">Discogs release ID: </span>{{ release_id }}</p>
                         {% if release.genres %} 
-                            <p>Genres: 
+                            <p><span class="bold">Genres:</span> 
                             {% for g in release.genres %}
                                 {{ g | safe }}{% if g != release.genres | last %}, {% endif %}
                             {% endfor %}
@@ -74,11 +74,12 @@
                         {% endif %}
 
                         {% for t in release.tracklist %}
-                            <p>{{ t.position }}<span style="margin-left:5px;"> </span>
-                            {{ t.title }}
-                            {% if t.duration != "" %}
-                                - {{ t.duration }}
-                            {% endif %}
+                            <p>
+                                <span class="bold">{{ t.position }}</span>
+                                {{ t.title }}
+                                {% if t.duration != "" %}
+                                    - {{ t.duration }}
+                                {% endif %}
                             </p>
                         {% endfor %}
                     </div>

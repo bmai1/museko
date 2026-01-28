@@ -20,6 +20,15 @@ p {
     font-size: 12px;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 #header {
     width: 100%;
     max-width: 1000px;
@@ -84,13 +93,16 @@ audio {
     margin-top: 50px;
 }
 
-.flex-center {
-    display: flex;
-    justify-content: center;
-}
-
 #release-cover {
     height: 500px;
+}
+
+#release-info {
+    margin-top: 50px; 
+    padding-left: 30px;
+    /* background-color: red; */
+    height: 500px;
+    text-align: left;
 }
 
 #footer {
