@@ -18,10 +18,10 @@
         </div>
         <div id="download">
             <div id="download-container">
-                <h3>Download file with URL (via <a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a>)</h3>
-                <p>Supports YouTube, SoundCloud, and <a href="https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md" target="_blank">more</a>.</p>
+                <h3>Download .mp3 file from URL with <a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a></h3>
+                <p>YouTube, SoundCloud, and <a href="https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md" target="_blank">other</a> links are supported.</p>
                 <form id="mp3-download" method="post" action="/download">
-                    <input type="text" name="url" id="urlInput" placeholder="Enter URL here" size="19">
+                    <input type="text" name="url" id="urlInput" placeholder="https://www.youtube.com/watch?v=9HA5p1v7rMw" size="40">
                     <input id="download-button" type="submit" value="Download">
                     <br>
                     <span id="download-status"></span>
@@ -31,7 +31,7 @@
 
         <div id="upload">
             <div id="upload-container">
-                <h3>Upload file for analysis (.mp3, .flac, .wav)</h3>
+                <h3>Upload audio file for analysis (.mp3, .flac, .wav)</h3>
                 <form id="mp3-upload" method="post" action="/upload" enctype="multipart/form-data">
                     <input type="file" name="file" id="file-input">
                     <input id="upload-button" type="submit" value="Upload">
@@ -42,17 +42,20 @@
 
         <div id="discogs-roll">
             <h3>Draw a random release from Discogs</h3>
+            <p>Optionally filter releases by one genre. If this field is left empty, a random genre will be chosen.</p>
+            <p>As releases are randomly selected from the whole database, this will likely be rate limited for less popular genres.</p>
             <form method="post" action="/roll">
-            <input
-                type="text"
-                name="query"
-                id="discogs-roll-genre"
-                value="{{ query }}"
-                placeholder="Filter by genre (optional)"
-                autocomplete="off"
-                size="20"
-            >
-            <input id="submit-button" type="submit" value="Search">
+                <a style="margin-right: 5px; font-size: 13px;" target="_blank" href="https://support.discogs.com/hc/en-us/articles/360005055213-Database-Guidelines-9-Genres-Styles">View list of genres</a>
+                <input
+                    type="text"
+                    name="query"
+                    id="discogs-roll-genre"
+                    value="{{ query }}"
+                    placeholder="Jazz, classical, etc."
+                    autocomplete="off"
+                    size="15"
+                >
+                <input id="submit-button" type="submit" value="Search">
             </form>
         </div>
 
@@ -103,7 +106,7 @@
                 </div>
             </div>
             <div id="footer">
-                <p>Last updated on 28 January 2026. Source code available on <a href="https://github.com/bmai1/museko/tree/main/apps/web" target="_blank">GitHub</a>.</p>
+                <p>Last updated on 2 February 2026. Source code available on <a href="https://github.com/bmai1/museko/tree/main/apps/web" target="_blank">GitHub</a>.</p>
             </div>
         </div>
     </div>
