@@ -41,17 +41,20 @@
         </div>
 
         <div id="discogs-roll">
-            <h3>Draw a random release from Discogs</h3>
-            <p>Optionally filter releases by one genre. If this field is left empty, a random genre will be chosen.</p>
-            <p>As releases are randomly selected from the whole database, this will likely be rate limited for less popular genres.</p>
+            <h3>Draw a release from Discogs</h3>
             <form method="post" action="/roll">
+                <button type="submit">Random</button>
+                <button type="button" id="genre-form-button">Filter by genre</button>
+            </form>
+            <form id="genre-form" method="post" action="/roll">
+                <p>Note: only works for major genres like Rock, Jazz, Classical, etc.</p>
                 <a style="margin-right: 5px; font-size: 13px;" target="_blank" href="https://support.discogs.com/hc/en-us/articles/360005055213-Database-Guidelines-9-Genres-Styles">View list of genres</a>
                 <input
                     type="text"
                     name="query"
                     id="discogs-roll-genre"
                     value="{{ query }}"
-                    placeholder="Jazz, classical, etc."
+                    placeholder="Enter genre name"
                     autocomplete="off"
                     size="15"
                 >
@@ -106,7 +109,7 @@
                 </div>
             </div>
             <div id="footer">
-                <p>Last updated on 2 February 2026. Source code available on <a href="https://github.com/bmai1/museko/tree/main/apps/web" target="_blank">GitHub</a>.</p>
+                <p>Last updated on 9 February 2026. Source code available on <a href="https://github.com/bmai1/museko/tree/main/apps/web" target="_blank">GitHub</a>.</p>
             </div>
         </div>
     </div>

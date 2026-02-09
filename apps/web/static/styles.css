@@ -89,6 +89,11 @@ audio {
     width: 100%;
 }
 
+#genre-form {
+    display: none;
+    margin-top: 5px;
+}
+
 #release-container {
     margin-top: 50px;
 }

@@ -1,11 +1,13 @@
 import { initAudioVisualizer } from "./audioVisualizer.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-    const downloadForm      = document.getElementById('mp3-download'),
-          downloadStatus    = document.getElementById('download-status'),
-          uploadForm        = document.getElementById('mp3-upload'),
-          uploadStatus      = document.getElementById('upload-status'),
-          fileInput         = document.getElementById('file-input');
+    const downloadForm    = document.getElementById('mp3-download'),
+          downloadStatus  = document.getElementById('download-status'),
+          uploadForm      = document.getElementById('mp3-upload'),
+          uploadStatus    = document.getElementById('upload-status'),
+          fileInput       = document.getElementById('file-input'),
+          genreForm       = document.getElementById('genre-form'),
+          genreFormButton = document.getElementById('genre-form-button');
 
     // Download mp3 files from YouTube with yt-dl
     downloadForm.addEventListener('submit', function(event) {
@@ -110,6 +112,16 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error('Error:', error);
         });
+    });
+
+    genreFormButton.addEventListener('click', function() {
+        const isHidden = getComputedStyle(genreForm).display === "none";
+        if (isHidden) {
+            genreForm.style.display = "block";
+        } 
+        else {
+            genreForm.style.display = "none";
+        }
     });
 });
 
